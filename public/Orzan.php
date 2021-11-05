@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>SocialCity | La hostelería a tu disposición </title>
+    <title>SocialCity | Orzán </title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -17,7 +17,43 @@
     <link rel="stylesheet" href="css/_all-skins.min.css">
     <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
     <link rel="shortcut icon" href="img/favicon.ico">
-
+    <style>
+        ul li{
+            list-style-image:none;
+        }
+        ul li.desplegableNivel1_Res > ul li{
+			display:none;
+		}
+		ul li.desplegableNivel2_Res > ul li{
+			display:none;
+		}
+		ul li.desplegableNivel1_Bar > ul li{
+			display:none;
+		}
+		ul li.desplegableNivel2_Bar > ul li{
+			display:none;
+		}
+		.desplegableNivel1_Res{
+			list-style-image:url(img/mas.jpg);
+			//background-repeat:no-repeat;
+			list-style-position:inside;
+		}
+		.desplegableNivel2_Res{
+			list-style-image:url(img/mas.jpg);
+			//background-repeat:no-repeat;
+			list-style-position:inside;
+		}
+		.desplegableNivel1_Bar{
+			list-style-image:url(img/mas.jpg);
+			//background-repeat:no-repeat;
+			list-style-position:inside;
+		}
+		.desplegableNivel2_Bar{
+			list-style-image:url(img/mas.jpg);
+			//background-repeat:no-repeat;
+			list-style-position:inside;
+        }
+    </style>
   </head>
   <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
@@ -27,7 +63,7 @@
         <!-- Logo -->
         <a href="inicio.html" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini"><b>SCity</b></span>
+          <span class="logo-mini"><b>SC</b>V</span>
           <!-- logo for regular state and mobile devices -->
           <span class="logo-lg"><b>SocialCity</b></span>
         </a>
@@ -103,7 +139,7 @@
               </a>
               <ul class="treeview-menu">
                 <li><a href="compras/ingreso"><i class="fa fa-circle-o"></i>Riazor</a></li>
-                <li><a href="Orzan.php"><i class="fa fa-circle-o"></i> Orzán</a></li>
+                <li><a href="compras/proveedor"><i class="fa fa-circle-o"></i> Orzán</a></li>
                 <li><a href="compras/proveedor"><i class="fa fa-circle-o"></i> Monte alto</a></li>
                 <li><a href="compras/ingreso"><i class="fa fa-circle-o"></i>Plaza de España</a></li>
                 <li><a href="compras/proveedor"><i class="fa fa-circle-o"></i> Zalaeta</a></li>
@@ -129,8 +165,8 @@
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="index.html"><i class="fa fa-circle-o"></i>Área personal</a></li>
-                <!--<a href="configuracion/usuario"></a>-->
+                <li><a href="configuracion/usuario"><i class="fa fa-circle-o"></i>Área personal</a></li>
+                
               </ul>
             </li>  
             <li class="treeview">
@@ -139,7 +175,8 @@
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="configuracion/usuario"><i class="fa fa-circle-o"></i>Registro</a></li>
+                <li><a href="configuracion/usuario"><i class="fa fa-circle-o">Registro</i></a></li>
+                <li><a href="configuracion/usuario"><i class="fa fa-circle-o">Olvidé mi contraseña</i></a></li>
               </ul>
             </li>           
           </ul>
@@ -165,21 +202,41 @@
 		                          <!--Contenido dinámico con el tag yield-->
                               <!--@yield('Contenido')-->
                               <!--Fin Contenido-->
-                              <h2>INICIO</h2>
-                              <h3>El proyecto SocialCity...</h3>
-                              <p>SocialCity nace de la necesidad que tiene la gente de tener toda la información a mano de un forma
-                                cómoda, rápida y lo más precisa posible sobre los sitios de hostelería de nuestra ciudad.</br>En un
-                                mundo tan informatizado como el nuestro, la llegada del 5 G, las tecnologías evolucionando cada vez más y 
-                                el estar a la última de todo casi al momento da lugar, es el momento de aprobechar estos avances para
-                                conectar el sector hostelero más aún a la gente de esta gran SmartCity como lo es Coruña.</p>
-                              <h3>¿Que se puede hacer?</h3>
-                              <h4>Este es un resumen de lo que SocialCity puede hacer por tí:</h4>
-                              <ul>
-                                <li>Consultar la ocupación actual y ubicación de los locales más valorados de Coruña.</li>
-                                <li>Consultar los mejores locales según tus preferencias.</li>
-                                <li>Añadir locales a tus favoritos para tenerlos a mano (sólo usuarios registrados).</li>
-                                <li>Programar alarmar de tus favoritos para notificarte de la situación actual de un local a una hora específica (sólo usuarios registrados).</li>
-                              </ul>
+                              <h1>ORZÁN</h1>
+                              <div style="margin-top:50px;margin-left:5%;width:auto;height:auto;border:10px solid #3c8dbc;border-right:none;border-bottom:none;border-left:block;border-top:none">
+      
+                <h1>RESTAURANTES</h1><!--Menú desplegable con los restaurantes principales de la zona que va a cargar los restaurantes
+                                que haya desde la base de datos-->
+                    <div id="#RestaurareAyo" style="margin-top:50px;margin-left:2%;width:50%;height:auto">
+                      <h2>Restaurante AYÓ</h2> <!--Submenú desplegable con la información básica de cada local-->
+                        <h4>Valorarión: (Obtener de la base de datos) estrellas</h4>
+                        <h4>Horario: (Obtener de la base de datos)</h4>
+                        <h4>Dirección: (Obtener de la base de datos)</h4> 
+                        <h4>Teléfono: (Obtener de la base de datos)</h4> 
+                        <h4>Sitio Web: (Obtener de la base de datos)</h4>
+                        <h4>Ocupación estimada. <table width="200px" height="auto"><tr><td>Lunes:</td><td>(Obtener de la base de datos)</td><td>Martes:</td><td>0 %</td><td>Miércoles:</td><td>0 %</td><td>Jueves:</td><td>0 %</td></tr><tr><td>Viernes:</td><td>0 %</td><td>Sábado:</td><td>0 %</td><td>Domingo:</b></td><td>0 %</td></tr></table><h4>
+                        <h4>La carta: (QR con enlace al menú)</h4>    
+                        <h4><a href="https://www.google.es/maps/place/Ay%C3%B3+Pasta+Bar/@43.3700228,-8.4059316,17z/data=!3m1!4b1!4m5!3m4!1s0xd2e7d62be9e6c0b:0xcc0e549d20956709!8m2!3d43.3700189!4d-8.4037429" style="font-decoration:italic">Ver ubicación</a></h4>        
+                    </div>   
+               </div>     
+						</div>
+        </div>
+                      <div style="margin-top:50px;margin-left:5%;width:auto;height:auto;border:10px solid #3c8dbc;border-right:none;border-bottom:none;border-left:block;border-top:none">  
+                <h1>BARES</h1><!--Menú desplegable con los restaurantes principales de la zona que va a cargar los restaurantes
+                                que haya desde la base de datos-->
+                    <div id="#RestaurareAyo" style="margin-top:50px;margin-left:2%;width:50%;height:auto">
+                    <h2>Tio Ovidio</h2><!--Submenú desplegable con la información básica de cada local-->
+                        <h4>Valorarión:</h4>
+                        <h4>Horario:</h4>
+                        <h4>Dirección:</h4> 
+                        <h4>Teléfono: 981 35 44 76</h4> 
+                        <h4>Juegos de mesa:</h4>
+						<h4>Eventos:</h4>
+                        <h4>Ocupación estimada. <table width="200px" height="auto"><tr><td>Lunes:</td><td width="20px">0 %</td><td>Martes:</td><td>0 %</td><td>Miércoles:</td><td>0 %</td><td>Jueves:</td><td>0 %</td></tr><tr><td>Viernes:</td><td>0 %</td><td>Sábado:</td><td>0 %</td><td>Domingo:</b></td><td>0 %</td></tr></table></h4>
+						<h4>La carta</h4>         
+            <h4><a href="https://www.google.es/maps/place/T%C3%ADo+Ovidio/@43.3701126,-8.4058509,17z/data=!3m2!4b1!5s0xd2e7c7c460fd5bf:0x8aba7b8001e13226!4m5!3m4!1s0xd2e7c7c45eb0b77:0x2e4f28cf2b7e7741!8m2!3d43.3701087!4d-8.4036622" style="font-decoration:italic;color:blue;">Ver ubicación</a></h4>          
+                    </div>
+        </div>
                            </div>
                         </div>
 		                    
@@ -199,14 +256,55 @@
         </div>
         <strong>Copyright &copy; 2015-2020 <a href="www.incanatoit.com">IncanatoIT</a>.</strong> All rights reserved.
       </footer>
+      <script>
+$(document).ready(function() {
+            $(".desplegableNivel1_Res").click(function() {
+				if ($(".desplegableNivel1_Res > ul li").css("display")=="none"){
+                    $(".desplegableNivel1_Res > ul li").show();
+					$(".desplegableNivel1_Res").css("list-style-image","url(img/menos.jpg)");
+					}
+				else{
+					$("ul li.desplegableNivel1_Res > ul li").hide();
+					$(".desplegableNivel1_Res").css("list-style-image","url(img/mas.jpg)");
+					}
+			});
+			$(".desplegableNivel2_Res").click(function() {
+				if ($(".desplegableNivel2_Res > ul li").css("display")=="none"){
+					$(".desplegableNivel2_Res > ul li").show();
+					$(".desplegableNivel2_Res").css("list-style-image","url(img/menos.jpg)");
+					}
+				else{
+					$("ul li.desplegableNivel2_Res > ul li").hide();
+					$(".desplegableNivel2_Res").css("list-style-image","url(img/mas.jpg)");
+					}
+			});
 
-      
+			$(".desplegableNivel1_Bar").click(function() {
+				if ($(".desplegableNivel1_Bar > ul li").css("display")=="none"){
+					$(".desplegableNivel1_Bar > ul li").show();
+					$(".desplegableNivel1_Bar").css("list-style-image","url(img/menos.jpg)");
+					}
+				else{
+					$("ul li.desplegableNivel1_Bar > ul li").hide();
+					$(".desplegableNivel1_Bar").css("list-style-image","url(img/mas.jpg)");
+					}
+			});
+			$(".desplegableNivel2_Bar").click(function() {
+				if ($(".desplegableNivel2_Bar > ul li").css("display")=="none"){
+					$(".desplegableNivel2_Bar > ul li").show();
+					$(".desplegableNivel2_Bar").css("list-style-image","url(img/menos.jpg)");
+					}
+				else{
+					$("ul li.desplegableNivel2_Bar > ul li").hide();
+					$(".desplegableNivel2_Bar").css("list-style-image","url(img/mas.jpg)");
+					}
+			});
+        });
+</script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
     <!-- jQuery 2.1.4 -->
     <script src="js/jQuery-2.1.4.min.js"></script>
     <!-- Bootstrap 3.3.5 -->
     <script src="js/bootstrap.min.js"></script>
     <!-- AdminLTE App -->
     <script src="js/app.min.js"></script>
-    
-  </body>
-</html>
