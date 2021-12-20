@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>SocialCity | La hostelería a tu disposición </title>
+    <title>SocialCity</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -17,17 +17,17 @@
     <link rel="stylesheet" href="css/_all-skins.min.css">
     <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
     <link rel="shortcut icon" href="img/favicon.ico">
-
-  </head>
+    <link rel="stylesheet" href="css/estilo.css">
+</head>
   <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
 
       <header class="main-header">
 
         <!-- Logo -->
-        <a href="inicio.html" class="logo">
+        <a href="index.php" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini"><b>SCity</b></span>
+          <span class="logo-mini"><b>SC</b>V</span>
           <!-- logo for regular state and mobile devices -->
           <span class="logo-lg"><b>SocialCity</b></span>
         </a>
@@ -91,46 +91,27 @@
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="inicio.html"><i class="fa fa-circle-o"></i> Inicio</a></li>
+                <li><a href="index.php"><i class="fa fa-circle-o"></i> Inicio</a></li>
               </ul>
             </li>
-            
             <li class="treeview">
               <a href="#">
-                <i class="fa fa-th"></i>
-                <span>Selecciona una zona</span>
-                 <i class="fa fa-angle-left pull-right"></i>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="compras/ingreso"><i class="fa fa-circle-o"></i>Riazor</a></li>
-                <li><a href="Orzan.php"><i class="fa fa-circle-o"></i> Orzán</a></li>
-                <li><a href="compras/proveedor"><i class="fa fa-circle-o"></i> Monte alto</a></li>
-                <li><a href="compras/ingreso"><i class="fa fa-circle-o"></i>Plaza de España</a></li>
-                <li><a href="compras/proveedor"><i class="fa fa-circle-o"></i> Zalaeta</a></li>
-                <li><a href="compras/ingreso"><i class="fa fa-circle-o"></i>María Pita</a></li>
-                <li><a href="compras/proveedor"><i class="fa fa-circle-o"></i> La Marina</a></li>
-                <li><a href="compras/ingreso"><i class="fa fa-circle-o"></i>Plaza de Pontevedra</a></li>
-                <li><a href="compras/proveedor"><i class="fa fa-circle-o"></i> Ronda de Nelle</a></li>
-                <li><a href="compras/ingreso"><i class="fa fa-circle-o"></i>Ventorrillo</a></li>
-                <li><a href="compras/proveedor"><i class="fa fa-circle-o"></i> Los Rosales</a></li>
-                <li><a href="compras/ingreso"><i class="fa fa-circle-o"></i>Los Mallos</a></li>
-                <li><a href="compras/proveedor"><i class="fa fa-circle-o"></i> Monelos</a></li>
-                <li><a href="compras/ingreso"><i class="fa fa-circle-o"></i>Los Castros</a></li>
-                <li><a href="compras/proveedor"><i class="fa fa-circle-o"></i> Barrio de las Flores</a></li>
-                <li><a href="compras/ingreso"><i class="fa fa-circle-o"></i>Matogrande</a></li>
-                <li><a href="compras/proveedor"><i class="fa fa-circle-o"></i> Elviña</a></li>
-                <li><a href="compras/ingreso"><i class="fa fa-circle-o"></i>Eirís</a></li>
-              </ul>
-            </li>
-                       
-            <li class="treeview">
-              <a href="#">
-                <i class="fa fa-folder"></i> <span>Inicia Sesión</span>
+                <i class="fa fa-laptop"></i>
+                <span>Acerca de...</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="index.html"><i class="fa fa-circle-o"></i>Área personal</a></li>
-                <!--<a href="configuracion/usuario"></a>-->
+                <li><a href="socialcity.html"><i class="fa fa-circle-o"></i>Socialcity</a></li>
+              </ul>
+            </li>
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-folder"></i> <span>Iniciar Sesión</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="login.php"><i class="fa fa-circle-o"></i>Login</a></li>
+                
               </ul>
             </li>  
             <li class="treeview">
@@ -139,7 +120,8 @@
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="configuracion/usuario"><i class="fa fa-circle-o"></i>Registro</a></li>
+                <li><a href="registro.php"><i class="fa fa-circle-o">Nuevo usuario</i></a></li>
+                <li><a href="configuracion/usuario"><i class="fa fa-circle-o">Olvidé mi contraseña</i></a></li>
               </ul>
             </li>           
           </ul>
@@ -162,24 +144,33 @@
                 <div class="box-body">
                   	<div class="row">
 	                  	<div class="col-md-12">
-		                          <!--Contenido dinámico con el tag yield-->
-                              <!--@yield('Contenido')-->
-                              <!--Fin Contenido-->
-                              <h2>INICIO</h2>
-                              <h3>El proyecto SocialCity...</h3>
-                              <p>SocialCity nace de la necesidad que tiene la gente de tener toda la información a mano de un forma
-                                cómoda, rápida y lo más precisa posible sobre los sitios de hostelería de nuestra ciudad.</br>En un
-                                mundo tan informatizado como el nuestro, la llegada del 5 G, las tecnologías evolucionando cada vez más y 
-                                el estar a la última de todo casi al momento da lugar, es el momento de aprobechar estos avances para
-                                conectar el sector hostelero más aún a la gente de esta gran SmartCity como lo es Coruña.</p>
-                              <h3>¿Que se puede hacer?</h3>
-                              <h4>Este es un resumen de lo que SocialCity puede hacer por tí:</h4>
-                              <ul>
-                                <li>Consultar la ocupación actual y ubicación de los locales más valorados de Coruña.</li>
-                                <li>Consultar los mejores locales según tus preferencias.</li>
-                                <li>Añadir locales a tus favoritos para tenerlos a mano (sólo usuarios registrados).</li>
-                                <li>Programar alarmar de tus favoritos para notificarte de la situación actual de un local a una hora específica (sólo usuarios registrados).</li>
-                              </ul>
+		                       
+               </div>     
+						</div>
+        </div>
+                      <div style="margin-top:50px;margin-left:5%;width:auto;height:auto;border:10px solid #3c8dbc;border-right:none;border-bottom:none;border-left:block;border-top:none">  
+                    <!--DATOS DEL BAR ELEGIDO-->
+                    <h1><?php echo $Nombre ?></h1>
+                    <div style="margin-top:50px;margin-left:2%;width:50%;height:auto">
+                        <h3><b>Valoración: </b><?php echo $Puntuacion ?></h3>
+                        <h3><b>Capacidad: </b><?php echo $Capacidad ?></h3>
+                        <h3><b>Horario: </b><?php echo $Horario ?></h3>
+                        <h3><b>Dirección: </b><?php echo $Direccion ?></h3>
+                        <h3><b>Rango de edad del ambiente </b><?php echo $Puntuacion ?>&nbsp;años</h3>
+                        <h3>Ocupación estimada: 
+                            <table width="400px" height="auto">
+                                <tr>
+                                    <td>Lunes:</td><td width="20px"><?php echo $Lunes ?> %</td><td>Martes:</td><td><?php echo $Martes ?> %</td>
+                                    <td>Miércoles:</td><td><?php echo $Miercoles ?> %</td><td>Jueves:</td><td><?php echo $Jueves ?> %</td>
+                                </tr>
+                                <tr>
+                                    <td>Viernes:</td><td><?php echo $Viernes ?> %</td><td>Sábado:</td><td><?php echo $Sabado ?> %</td>
+                                    <td>Domingo:</b></td><td><?php echo $Domingo ?> %</td>
+                                </tr>
+                            </table>
+						<h3>Juegos de mesa: <?php echo $JuegosDeMesa ?></h3>                 
+                    </div>
+        </div>
                            </div>
                         </div>
 		                    
@@ -199,14 +190,10 @@
         </div>
         <strong>Copyright &copy; 2015-2020 <a href="www.incanatoit.com">IncanatoIT</a>.</strong> All rights reserved.
       </footer>
-
-      
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
     <!-- jQuery 2.1.4 -->
     <script src="js/jQuery-2.1.4.min.js"></script>
     <!-- Bootstrap 3.3.5 -->
     <script src="js/bootstrap.min.js"></script>
     <!-- AdminLTE App -->
     <script src="js/app.min.js"></script>
-    
-  </body>
-</html>
