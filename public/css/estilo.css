@@ -1,9 +1,42 @@
 button{
-    width:50px;
+    display:inline;
+    width:100px;
     height:auto;
-    background-color:darkblue;
+    background-color:#3c8dbc;
     color:white;
     font-weight: bold;
-    border:3px solid white;
+    border:3px solid black;
+    margin:10px;
+}
+button:hover{
+    opacity:0.5;
+}
+#Filtros{
+    margin-top:80px;
+}
+#FiltroZona{
+    float:left;
+    margin-left:2%;
+    margin-top:-40px;
+}
+#FiltroRestaurante{
+    float:left;
+    margin-left:5%;
+    margin-top:-40px;
+}
+#FiltroEdad{
+    float:left;
+    margin-left:5%;
+    margin-top:-40px;
+}
+#FiltroJuegos{
+    float:left;
+    margin-left:5%;
+    margin-top:-40px;
+}
+h1,h2,h3,h4,h5{
+    font-weight:bold;
+}
+input,select,textarea,button{
     margin:10px;
 }

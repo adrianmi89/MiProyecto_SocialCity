@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php 
+    include conexionDB.php;
+?>
 <html>
   <head>
     <meta charset="utf-8">
@@ -149,9 +152,9 @@
                               <!--Fin Contenido-->
                               <h1>Listado de Bares y Restaurantes</h1>
                               <h2>Filtrar por...</h2>
-                              <div id="#Filtros">
-                                  <div style="display:flex" width=100px>
-                                  <span style="font-size:20px">Zona</span>
+                              <div id="Filtros">
+                                  <div id="FiltroZona">
+                                  <span style="font-size:25px">Zona</span>
                                   <form action="" method="POST">
                                       <select value="--Selecciona zona--">
                                           <option>--Selecciona zona--</option>
@@ -175,10 +178,11 @@
                                           <option>Barrio de las Flores</option>
                                           <option>Matogrande</option>
                                       </select>
-                                      <button type="submit">Mostrar<button>
+                                    </form>
+                                      <button type="submit">Mostrar</button>
                                   </div>
-                                  <div style="display:flex;float:right">
-                                  <span style="font-size:20px">Tipo de Restaurante</span>
+                                  <div id="FiltroRestaurante">
+                                  <span style="font-size:25px">Tipo de Restaurante</span>
                                   <form action="" method="POST">
                                       <select value="--¿Que te apetece?--">
                                           <option value="Marisquería">--¿Que te apetece?--</option>
@@ -190,31 +194,36 @@
                                           <option value="Restaurante Italiano">Restaurante Italiano</option>
                                           <option value="Restaurante Mejicano">Restaurante Mejicano</option>
                                       </select>
+                                  </form>
+                                      <button type="submit">Mostrar</button>
+                                  </div>
+                                  <div id="FiltroEdad">
+                                  <span style="font-size:25px">Rango de Edad</span>
+                                    <form action="" method="POST">
+                                      <select value="--¿Que te apetece?--">
+                                          <option value="">--¿Cual es tu rango?--</option>
+                                          <option value="Joven">15-29</option>
+                                          <option value="Adulto">30-49</option>
+                                          <option value="Mayor">49-64</option>
+                                          <option value="MuyMayor">65-99</option>
+                                      </select>
+                                  </form>
+                                    <button type="submit">Mostrar</button>
+                                  </div>
+                                  <div id="FiltroJuegos">
+                                    <span style="font-size:25px">Juegos de Mesa del Bar</span>
+                                    <form action="" method="POST">
+                                      <label id="C">Cartas</label><input type="checkbox" id="Cartas" onclick="checkJuegos()">
+                                      <label id="A">Ajedrez</label><input type="checkbox" id="Ajedrez" onclick="checkJuegos()">
+                                      <label id="P">Parchís</label><input type="checkbox" id="Parchis" onclick="checkJuegos()">
+                                      <label id="D">Dominó</label><input type="checkbox" id="Domino" onclick="checkJuegos()">
+                                      <label id="Da">Dardos</label><input type="checkbox" id="Dardos" onclick="checkJuegos()">
+                                      <label id="V">Villar</label><input type="checkbox" id="Villar" onclick="checkJuegos()">
+                                      <label id="F">Futbolín</label><input type="checkbox" id="Futbolin" onclick="checkJuegos()">
+                                  </form>
+                                    <button type="submit">Mostrar</button>
                                   </div>
                                   <br/><br/>
-                                  <div style="display:flex;float:right">
-                                    <span style="font-size:20px">Juegos de Mesa del Bar</span>
-                                    <form action="" method="POST">
-                                    <label id="C">Cartas</label><input type="checkbox" id="Cartas" onclick="checkJuegos()">
-                                    <label id="A">Ajedrez</label><input type="checkbox" id="Ajedrez" onclick="checkJuegos()">
-                                    <label id="P">Parchís</label><input type="checkbox" id="Parchis" onclick="checkJuegos()">
-                                    <label id="D">Dominó</label><input type="checkbox" id="Domino" onclick="checkJuegos()">
-                                    <label id="Da">Dardos</label><input type="checkbox" id="Dardos" onclick="checkJuegos()">
-                                    <label id="V">Villar</label><input type="checkbox" id="Villar" onclick="checkJuegos()">
-                                    <label id="F">Futbolín</label><input type="checkbox" id="Futbolin" onclick="checkJuegos()">
-                                    <button type="submit">Mostrar<button>
-                                  </div>
-                                  <br/><br/>
-                                  <div style="display:flex;float:left">
-                                  <span style="font-size:20px">Rango de Edad</span>
-                                    <form action="" method="POST">
-                                      <input type="radio" id="joven" value="joven"><label for="joven">15-29 años</label>
-                                      <input type="radio" id="adulto" value="adulto"><label for="adulto">30-49 años</label>
-                                      <input type="radio" id="mayor" value="mayor"><label for="mayor">50-64 años</label>
-                                      <input type="radio" id="muyMayor" value="muyMayor"><label for="muyMayor">65-99 años</label>
-                                      <button type="submit">Mostrar<button>
-                                    </form>
-                                  </div>
                             </div>
                             <div style="margin-top:50px;margin-left:5%;width:auto;height:auto">
                                 <!--<?php 
