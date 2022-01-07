@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php 
-    include conexionDB.php;
+    include "conexionBD.php";
 ?>
 <html>
   <head>
@@ -210,7 +210,7 @@
                                   </form>
                                     <button type="submit">Mostrar</button>
                                   </div>
-                                  <div id="FiltroJuegos">
+                                  <!--<div id="FiltroJuegos">
                                     <span style="font-size:25px">Juegos de Mesa del Bar</span>
                                     <form action="" method="POST">
                                       <label id="C">Cartas</label><input type="checkbox" id="Cartas" onclick="checkJuegos()">
@@ -222,18 +222,18 @@
                                       <label id="F">Futbolín</label><input type="checkbox" id="Futbolin" onclick="checkJuegos()">
                                   </form>
                                     <button type="submit">Mostrar</button>
-                                  </div>
+                                  </div>-->
                                   <br/><br/>
                             </div>
-                            <div style="margin-top:50px;margin-left:5%;width:auto;height:auto">
-                                <!--<?php 
-                                foreach($local as $l)
-                                ?>-->
-                                <div style="margin-top:20px;border:3px">
-                                    <h4><b><?php echo "Restaurarante Italiano AYÓ" ?></b></h4>
-                                    <h4><b>Valoración: </b><?php echo $Puntuacion ?></h3>
-                                </div>
+                            <div style="margin-top:100px; margin-left:5%;width:auto;height:auto;font-size:22px;font-weight:bold;">
+                                <?php 
+                                listaLocales($conexion);
+                                /*echo '<div style="margin-top:20px;border:3px">';
+                                    
+                                echo '</div>';*/
+                                ?>
                             </div>
+                            
                </div>     
 						</div>
         </div>
