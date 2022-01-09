@@ -7,18 +7,35 @@
     exit();
     }
     // $conexion -> close();
-
-    function listaLocales($conexion){
+    $zona = $_POST['zona'];
+    $tipo = $_POST['tipo'];
+    function listaLocales($conexion,$zona,$tipo){
         $listarRestaurante = "SELECT Nombre,Puntuacion FROM restaurante";
         $listarBar = "SELECT Nombre,Puntuacion FROM bar";
+        // Filtrar por zona geográfica
+        if($zona != NULL){
+            $listarRestaurante = "SELECT Nombre,Puntuacion FROM restaurante INNER JOIN direccion
+            ON DIRECCION_NombreLocal = NombreLocal WHERE zona = '$zona'";
+
+            $listarBar = "SELECT Nombre,Puntuacion FROM bar INNER JOIN direccion
+            ON DIRECCION_NombreLocal = NombreLocal WHERE zona = '$zona'";
+        }
+        // Filtrar por tipo de restaurante
+        if($tipo != NULL){
+            $listarRestaurante = "SELECT Nombre,Puntuacion FROM restaurante WHERE Nombre LIKE '%$tipo%'";
+
+        }
         $resulRestaurante = mysqli_query($conexion, $listarRestaurante);
         $resulBar = mysqli_query($conexion, $listarBar);
 
         while($restaurante = mysqli_fetch_row($resulRestaurante)){
             echo $restaurante[0]."<br/>Valoración: ".$restaurante[1]."<br/><br/>";
         }
-        while($bar = mysqli_fetch_row($resulBar)){
-            echo $bar[0]."<br/>Valoración: ".$bar[1]."<br/><br/>";
+        // Mostrar los bares solo si no le pasamos el tipo de restaurante
+        if($tipo == NULL){
+            while($bar = mysqli_fetch_row($resulBar)){
+                echo $bar[0]."<br/>Valoración: ".$bar[1]."<br/><br/>";
+            }
         }
     }
     function altaUsuario($alias,$clave){

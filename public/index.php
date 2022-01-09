@@ -156,36 +156,37 @@
                                   <div id="FiltroZona">
                                   <span style="font-size:25px">Zona</span>
                                   <form action="" method="POST">
-                                      <select value="--Selecciona zona--">
+                                      <select id="zona" name="zona" value="--Selecciona zona--">
                                           <option>--Selecciona zona--</option>
-                                          <option>Orzán</option>
-                                          <option>Riazor</option>
-                                          <option>Paseo Marítimo</option>
-                                          <option>Plaza de España</option>
-                                          <option>Zalaeta</option>
-                                          <option>Montealto</option>
-                                          <option>María Pita</option>
-                                          <option>La Marina</option>
-                                          <option>Plaza de Pontevedra</option>
-                                          <option>Ronda de Nelle</option>
-                                          <option>Ronda de Outeiro</option>
-                                          <option>Ventorrillo</option>
-                                          <option>Los Rosales</option>
-                                          <option>Los Mallos</option>
-                                          <option>Monelos</option>
-                                          <option>Os Castros</option>
-                                          <option>Elviña</option>
-                                          <option>Barrio de las Flores</option>
-                                          <option>Matogrande</option>
+                                          <option value="Orzan">Orzán</option>
+                                          <option value="Riazor">Riazor</option>
+                                          <option value="PaseoMaritimo">Paseo Marítimo</option>
+                                          <option value="PlazaEspaña">Plaza de España</option>
+                                          <option value="Zalaeta">Zalaeta</option>
+                                          <option value="Montealto">Montealto</option>
+                                          <option value="MariaPita">María Pita</option>
+                                          <option value="LaMarina">La Marina</option>
+                                          <option value="PlazaPontevedra">Plaza de Pontevedra</option>
+                                          <option value="RondaNelle">Ronda de Nelle</option>
+                                          <option value="RondaOuteiro">Ronda de Outeiro</option>
+                                          <option value="Ventorrillo">Ventorrillo</option>
+                                          <option value="LosRosales">Los Rosales</option>
+                                          <option value="LosMallos">Los Mallos</option>
+                                          <option value="Monelos">Monelos</option>
+                                          <option value="OsCastros">Os Castros</option>
+                                          <option value="Elviña">Elviña</option>
+                                          <option value="BarrioFlores">Barrio de las Flores</option>
+                                          <option value="Matogrande">Matogrande</option>
                                       </select>
-                                    </form>
                                       <button type="submit">Mostrar</button>
+                                    </form>
+                                      
                                   </div>
                                   <div id="FiltroRestaurante">
                                   <span style="font-size:25px">Tipo de Restaurante</span>
                                   <form action="" method="POST">
-                                      <select value="--¿Que te apetece?--">
-                                          <option value="Marisquería">--¿Que te apetece?--</option>
+                                      <select value="tipo" name="tipo">
+                                          <option>--¿Que te apetece?--</option>
                                           <option value="Marisquería">Marisquería</option>
                                           <option value="Pulpería">Pulpería</option>
                                           <option value="Restaurante Japonés">Restaurante Japonés</option>
@@ -194,21 +195,21 @@
                                           <option value="Restaurante Italiano">Restaurante Italiano</option>
                                           <option value="Restaurante Mejicano">Restaurante Mejicano</option>
                                       </select>
-                                  </form>
                                       <button type="submit">Mostrar</button>
+                                  </form>    
                                   </div>
                                   <div id="FiltroEdad">
                                   <span style="font-size:25px">Rango de Edad</span>
                                     <form action="" method="POST">
                                       <select value="--¿Que te apetece?--">
-                                          <option value="">--¿Cual es tu rango?--</option>
+                                          <option name="edad">--¿Cual es tu rango?--</option>
                                           <option value="Joven">15-29</option>
                                           <option value="Adulto">30-49</option>
                                           <option value="Mayor">49-64</option>
                                           <option value="MuyMayor">65-99</option>
                                       </select>
+                                      <button type="submit">Mostrar</button>
                                   </form>
-                                    <button type="submit">Mostrar</button>
                                   </div>
                                   <!--<div id="FiltroJuegos">
                                     <span style="font-size:25px">Juegos de Mesa del Bar</span>
@@ -227,7 +228,7 @@
                             </div>
                             <div style="margin-top:100px; margin-left:5%;width:auto;height:auto;font-size:22px;font-weight:bold;">
                                 <?php 
-                                listaLocales($conexion);
+                                listaLocales($conexion,$zona,$tipo);
                                 /*echo '<div style="margin-top:20px;border:3px">';
                                     
                                 echo '</div>';*/
