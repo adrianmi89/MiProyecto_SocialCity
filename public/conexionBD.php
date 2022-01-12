@@ -7,13 +7,17 @@
     exit();
     }
     // $conexion -> close();
-    $zona = $_POST['zona'];
-    $tipo = $_POST['tipo'];
+    if(isset($_POST['zona'])){
+        $zona = $_POST['zona'];
+    }
+    if(isset($_POST['tipo'])){
+        $tipo = $_POST['tipo'];
+    }
     function listaLocales($conexion,$zona,$tipo){
         $listarRestaurante = "SELECT Nombre,Puntuacion FROM restaurante";
         $listarBar = "SELECT Nombre,Puntuacion FROM bar";
         // Filtrar por zona geográfica
-        if($zona != NULL){
+        if(isset($zona) != NULL){
             $listarRestaurante = "SELECT Nombre,Puntuacion FROM restaurante INNER JOIN direccion
             ON DIRECCION_NombreLocal = NombreLocal WHERE zona = '$zona'";
 
@@ -21,25 +25,29 @@
             ON DIRECCION_NombreLocal = NombreLocal WHERE zona = '$zona'";
         }
         // Filtrar por tipo de restaurante
-        if($tipo != NULL){
+        if(isset($tipo) != NULL){
             $listarRestaurante = "SELECT Nombre,Puntuacion FROM restaurante WHERE Nombre LIKE '%$tipo%'";
-
         }
         $resulRestaurante = mysqli_query($conexion, $listarRestaurante);
         $resulBar = mysqli_query($conexion, $listarBar);
 
+        // Le pasamos a restaurante.php el nombre del local para que lo identifique.
         while($restaurante = mysqli_fetch_row($resulRestaurante)){
-            echo $restaurante[0]."<br/>Valoración: ".$restaurante[1]."<br/><br/>";
+            $Nombre = $restaurante[0];
+            echo "<a style='color:black' href = 'restaurante.php?nombre=$Nombre'>".$restaurante[0]."<br/>Valoración: ".$restaurante[1]."</a><br/><br/>";
         }
+
         // Mostrar los bares solo si no le pasamos el tipo de restaurante
-        if($tipo == NULL){
+        // Le pasamos a restaurante.php el nombre del local para que lo identifique.
+        if(isset($tipo) == NULL){
             while($bar = mysqli_fetch_row($resulBar)){
-                echo $bar[0]."<br/>Valoración: ".$bar[1]."<br/><br/>";
+                $Nombre = $bar[0];
+                echo "<a style='color:black' href = 'bar.php?nombre=$Nombre'>".$bar[0]."<br/>Valoración: ".$bar[1]."</a><br/><br/>";
             }
         }
     }
-    function altaUsuario($alias,$clave){
-
+    function altaUsuario(){
+        
     }
     function bajaUsuario($alias,$clave){
 

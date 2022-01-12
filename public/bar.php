@@ -148,24 +148,50 @@
                </div>     
 						</div>
         </div>
-                      <div style="margin-top:50px;margin-left:5%;width:auto;height:auto;border:10px solid #3c8dbc;border-right:none;border-bottom:none;border-left:block;border-top:none">  
+                    <div style="margin-top:50px;margin-left:5%;width:auto;height:auto">  
                     <!--DATOS DEL BAR ELEGIDO-->
+                    <?php
+                    include 'conexionBD.php';
+                    // Le pasamos el nombre del local actual a través del enlace de lista de locales
+                    $localActual = $_GET['nombre'];
+                    $verDatos = "SELECT * FROM bar WHERE Nombre = '$localActual'";
+                    $Direccion = "SELECT * FROM direccion WHERE NombreLocal = '$localActual'";
+                    $resulDatosBar = mysqli_query($conexion, $verDatos);
+                    $resulDatosDireccion = mysqli_query($conexion, $Direccion);
+
+                    while($bar = mysqli_fetch_row($resulDatosBar)){
+                      $Nombre = $bar[0]; 
+                      $Capacidad = $bar[1];
+                      $Puntuacion = $bar[2];
+                      $Horario = $bar[3];
+                      $CLIENTES_HABITUALES_ID = $bar[4];
+                      $Eventos = $bar[5];
+                      $JuegosDeMesa = $bar[6];
+                    }
+                    while($direccion = mysqli_fetch_row($resulDatosDireccion)){
+                      $NombreLocal = $direccion[0]; 
+                      $Zona = $direccion[1]; 
+                      $Calle = $direccion[2];
+                      $Ciudad = $direccion[3];
+                    }
+                    ?>
                     <h1><?php echo $Nombre ?></h1>
-                    <div style="margin-top:50px;margin-left:2%;width:50%;height:auto">
-                        <h3><b>Valoración: </b><?php echo $Puntuacion ?></h3>
-                        <h3><b>Capacidad: </b><?php echo $Capacidad ?></h3>
+                    <div style="margin-top:50px;margin-left:2%;width:70%;height:auto">
+                        <h3><b>Valoración:</b><?php echo $Puntuacion." estrellas" ?></h3>
+                        <h3><b>Capacidad: </b><?php echo $Capacidad." personas"?></h3>
                         <h3><b>Horario: </b><?php echo $Horario ?></h3>
-                        <h3><b>Dirección: </b><?php echo $Direccion ?></h3>
-                        <h3><b>Rango de edad del ambiente </b><?php echo $Puntuacion ?>&nbsp;años</h3>
+                        <h3><b>Eventos: </b><?php echo $Eventos ?></h3>
+                        <h3><b>Dirección: </b><?php echo $Calle." - ".$Ciudad ?></h3>
+                        <h3><b>Rango de edad del ambiente: </b><?php echo "Sin datos" ?>&nbsp;</h3>
                         <h3>Ocupación estimada: 
                             <table width="400px" height="auto">
                                 <tr>
-                                    <td>Lunes:</td><td width="20px"><?php echo $Lunes ?> %</td><td>Martes:</td><td><?php echo $Martes ?> %</td>
-                                    <td>Miércoles:</td><td><?php echo $Miercoles ?> %</td><td>Jueves:</td><td><?php echo $Jueves ?> %</td>
+                                    <td>Lunes:</td><td width="20px"><?php echo "Sin datos" ?> %</td><td>Martes:</td><td><?php echo "Sin datos" ?> %</td>
+                                    <td>Miércoles:</td><td><?php echo "Sin datos" ?> %</td><td>Jueves:</td><td><?php echo "Sin datos" ?> %</td>
                                 </tr>
                                 <tr>
-                                    <td>Viernes:</td><td><?php echo $Viernes ?> %</td><td>Sábado:</td><td><?php echo $Sabado ?> %</td>
-                                    <td>Domingo:</b></td><td><?php echo $Domingo ?> %</td>
+                                    <td>Viernes:</td><td><?php echo "Sin datos" ?> %</td><td>Sábado:</td><td><?php echo "Sin datos" ?> %</td>
+                                    <td>Domingo:</b></td><td><?php echo "Sin datos" ?> %</td>
                                 </tr>
                             </table>
 						<h3>Juegos de mesa: <?php echo $JuegosDeMesa ?></h3>                 

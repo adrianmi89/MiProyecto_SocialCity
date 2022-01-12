@@ -94,7 +94,7 @@
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="perfil.php"><i class="fa fa-circle-o"></i> Inicio</a></li>
+                <li><a href="index.php"><i class="fa fa-circle-o"></i> Inicio</a></li>
               </ul>
             </li>
             <li class="treeview">
@@ -226,12 +226,9 @@
                                   </div>-->
                                   <br/><br/>
                             </div>
-                            <div style="margin-top:100px; margin-left:5%;width:auto;height:auto;font-size:22px;font-weight:bold;">
+                            <div id="Locales" style="margin-top:100px; margin-left:5%;width:auto;height:auto;font-size:22px;font-weight:bold;">
                                 <?php 
-                                listaLocales($conexion,$zona,$tipo);
-                                /*echo '<div style="margin-top:20px;border:3px">';
-                                    
-                                echo '</div>';*/
+                                listaLocales($conexion,$zona,$tipo)
                                 ?>
                             </div>
                             

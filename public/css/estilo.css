@@ -11,14 +11,7 @@ button{
 button:hover{
     opacity:0.5;
 }
-#Locales{
-    margin-top:100px;
-    margin-left:5%;
-    width:auto;
-    height:auto;
-    font-size:22px;
-    font-weight:bold;
-}
+
 #Filtros{
     margin-top:80px;
 }

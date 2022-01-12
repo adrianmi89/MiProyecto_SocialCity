@@ -148,24 +148,47 @@
                </div>     
 						</div>
         </div>
-                      <div style="margin-top:50px;margin-left:5%;width:auto;height:auto;border:10px solid #3c8dbc;border-right:none;border-bottom:none;border-left:block;border-top:none">  
+                  <div style="margin-top:50px;margin-left:5%;width:auto;height:auto;">  
                     <!--DATOS DEL RESTAURANTE ELEGIDO-->
+                    <?php
+                    include 'conexionBD.php';
+                    // Le pasamos el nombre del local actual a través del enlace de lista de locales
+                    $localActual = $_GET['nombre'];
+                    $verDatos = "SELECT * FROM restaurante WHERE Nombre = '$localActual'";
+                    $Direccion = "SELECT * FROM direccion WHERE NombreLocal = '$localActual'";
+                    $resulDatosRestaurante = mysqli_query($conexion, $verDatos);
+                    $resulDatosDireccion = mysqli_query($conexion, $Direccion);
+
+                    while($restaurante = mysqli_fetch_row($resulDatosRestaurante)){
+                      $Nombre = $restaurante[0]; 
+                      $Capacidad = $restaurante[1];
+                      $Puntuacion = $restaurante[2];
+                      $Carta = $restaurante[3];
+                      $Horario = $restaurante[4];
+                    }
+                    while($direccion = mysqli_fetch_row($resulDatosDireccion)){
+                      $NombreLocal = $direccion[0];
+                      $Zona = $direccion[1]; 
+                      $Calle = $direccion[2];
+                      $Ciudad = $direccion[3];
+                    }
+                    ?>
                     <h1><?php echo $Nombre ?></h1>
-                    <div style="margin-top:50px;margin-left:2%;width:50%;height:auto">
-                        <h3><b>Valoración: </b><?php echo $Puntuacion ?></h3>
-                        <h3><b>Capacidad: </b><?php echo $Capacidad ?></h3>
+                    <div style="margin-top:50px;margin-left:2%;width:70%;height:auto">
+                        <h3><b>Valoración: </b><?php echo $Puntuacion." estrellas" ?></h3>
+                        <h3><b>Capacidad: </b><?php echo $Capacidad." personas" ?></h3>
                         <h3><b>Horario: </b><?php echo $Horario ?></h3>
-                        <h3><b>Dirección: </b><?php echo $Direccion ?></h3>
-                        <h3><b>Rango de edad del ambiente </b><?php echo $Puntuacion ?>&nbsp;años</h3>
+                        <h3><b>Dirección: </b><?php echo $Calle." - ".$Ciudad ?></h3>
+                        <h3><b>Rango de edad del ambiente: </b><?php echo "Sin Datos" ?>&nbsp;</h3>
                         <h3>Ocupación estimada: 
                             <table width="400px" height="auto">
                                 <tr>
-                                    <td>Lunes:</td><td width="20px"><?php echo $Lunes ?> %</td><td>Martes:</td><td><?php echo $Martes ?> %</td>
-                                    <td>Miércoles:</td><td><?php echo $Miercoles ?> %</td><td>Jueves:</td><td><?php echo $Jueves ?> %</td>
+                                    <td>Lunes:</td><td width="20px"><?php echo "Sin Datos" ?> %</td><td>Martes:</td><td><?php echo "Sin Datos" ?> %</td>
+                                    <td>Miércoles:</td><td><?php echo "Sin Datos" ?> %</td><td>Jueves:</td><td><?php echo "Sin Datos" ?> %</td>
                                 </tr>
                                 <tr>
-                                    <td>Viernes:</td><td><?php echo $Viernes ?> %</td><td>Sábado:</td><td><?php echo $Sabado ?> %</td>
-                                    <td>Domingo:</b></td><td><?php echo $Domingo ?> %</td>
+                                    <td>Viernes:</td><td><?php echo "Sin Datos" ?> %</td><td>Sábado:</td><td><?php echo "Sin Datos" ?> %</td>
+                                    <td>Domingo:</b></td><td><?php echo "Sin Datos" ?> %</td>
                                 </tr>
                             </table>
 						<h3>Nuestra carta <a href="<?php echo $Carta ?>">Ver menú </a></h3>                 
