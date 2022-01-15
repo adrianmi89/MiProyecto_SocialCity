@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <?php 
     include "conexionBD.php";
+    error_reporting(0);
+
 ?>
 <html>
+
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,6 +24,10 @@
     <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
     <link rel="shortcut icon" href="img/favicon.ico">
     <link rel="stylesheet" href="css/estilo.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Neonderthaw&display=swap" rel="stylesheet"> 
+    
 </head>
   <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
@@ -32,7 +39,7 @@
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b>SC</b>V</span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>SocialCity</b></span>
+          <span class="logo-lg" style="font-size:40px !important"><b>SocialCity</b></span>
         </a>
 
         <!-- Header Navbar: style can be found in header.less -->
@@ -41,8 +48,11 @@
           <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
             <span class="sr-only">Navegación</span>
           </a>
+          <span style="padding-left:50px;color:white;font-size:50px;font-family: Neonderthaw;"><!--Haettenschweiler, 'Arial Narrow Bold', sans-serif-->
+          <b>A Coruña, una ciudad que conecta. ¿Aún no sabes que hacer? </b></span>
           <!-- Navbar Right Menu -->
           <div class="navbar-custom-menu">
+
             <ul class="nav navbar-nav">
               <!-- Messages: style can be found in dropdown.less-->
               
@@ -123,8 +133,7 @@
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="registro.php"><i class="fa fa-circle-o">Nuevo usuario</i></a></li>
-                <li><a href="configuracion/usuario"><i class="fa fa-circle-o">Olvidé mi contraseña</i></a></li>
+                <li><a href="registro.php"><i class="fa fa-circle-o"> Usuario Nuevo</i></a></li>
               </ul>
             </li>           
           </ul>
@@ -158,24 +167,23 @@
                                   <form action="" method="POST">
                                       <select id="zona" name="zona" value="--Selecciona zona--">
                                           <option>--Selecciona zona--</option>
-                                          <option value="Orzan">Orzán</option>
+                                          <option value="Orzán">Orzán</option>
                                           <option value="Riazor">Riazor</option>
-                                          <option value="PaseoMaritimo">Paseo Marítimo</option>
-                                          <option value="PlazaEspaña">Plaza de España</option>
+                                          <option value="Paseo Marítimo">Paseo Marítimo</option>
+                                          <option value="Plaza de España">Plaza de España</option>
                                           <option value="Zalaeta">Zalaeta</option>
                                           <option value="Montealto">Montealto</option>
-                                          <option value="MariaPita">María Pita</option>
-                                          <option value="LaMarina">La Marina</option>
-                                          <option value="PlazaPontevedra">Plaza de Pontevedra</option>
-                                          <option value="RondaNelle">Ronda de Nelle</option>
-                                          <option value="RondaOuteiro">Ronda de Outeiro</option>
+                                          <option value="La Marina">La Marina</option>
+                                          <option value="Plaza de Pontevedra">Plaza de Pontevedra</option>
+                                          <option value="Ronda de Nelle">Ronda de Nelle</option>
+                                          <option value="Ronda de Outeiro">Ronda de Outeiro</option>
                                           <option value="Ventorrillo">Ventorrillo</option>
-                                          <option value="LosRosales">Los Rosales</option>
-                                          <option value="LosMallos">Los Mallos</option>
+                                          <option value="Los Rosales">Los Rosales</option>
+                                          <option value="Los Mallos">Los Mallos</option>
                                           <option value="Monelos">Monelos</option>
-                                          <option value="OsCastros">Os Castros</option>
+                                          <option value="Os Castros">Os Castros</option>
                                           <option value="Elviña">Elviña</option>
-                                          <option value="BarrioFlores">Barrio de las Flores</option>
+                                          <option value="Barrio de las Flores">Barrio de las Flores</option>
                                           <option value="Matogrande">Matogrande</option>
                                       </select>
                                       <button type="submit">Mostrar</button>

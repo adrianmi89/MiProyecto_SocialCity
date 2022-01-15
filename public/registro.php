@@ -29,7 +29,7 @@
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b>SC</b>V</span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>SocialCity</b></span>
+          <span class="logo-lg" style="font-size:40px !important"><b>SocialCity</b></span>
         </a>
 
         <!-- Header Navbar: style can be found in header.less -->
@@ -113,7 +113,7 @@
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="registro.php"><i class="fa fa-circle-o">&nbsp;Nuevo usuario</i></a></li>
+                <li><a href="registro.php"><i class="fa fa-circle-o">&nbsp; Usuario Nuevo</i></a></li>
                 <li><a href="configuracion/usuario"><i class="fa fa-circle-o">&nbsp;Olvidé mi contraseña</i></a></li>
               </ul>
             </li>           

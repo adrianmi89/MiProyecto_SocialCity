@@ -29,7 +29,7 @@
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b>SC</b>V</span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>SocialCity</b></span>
+          <span class="logo-lg" style="font-size:40px !important"><b>SocialCity</b></span>
         </a>
 
         <!-- Header Navbar: style can be found in header.less -->
@@ -120,8 +120,7 @@
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="registro.php"><i class="fa fa-circle-o">Nuevo usuario</i></a></li>
-                <li><a href="configuracion/usuario"><i class="fa fa-circle-o">Olvidé mi contraseña</i></a></li>
+                <li><a href="registro.php"><i class="fa fa-circle-o"> Usuario Nuevo</i></a></li>
               </ul>
             </li>           
           </ul>
@@ -177,11 +176,11 @@
                     ?>
                     <h1><?php echo $Nombre ?></h1>
                     <div style="margin-top:50px;margin-left:2%;width:70%;height:auto">
-                        <h3><b>Valoración:</b><?php echo $Puntuacion." estrellas" ?></h3>
-                        <h3><b>Capacidad: </b><?php echo $Capacidad." personas"?></h3>
-                        <h3><b>Horario: </b><?php echo $Horario ?></h3>
-                        <h3><b>Eventos: </b><?php echo $Eventos ?></h3>
-                        <h3><b>Dirección: </b><?php echo $Calle." - ".$Ciudad ?></h3>
+                        <h3><b>Valoración:</b><span style="font-weight:normal"><?php echo $Puntuacion." estrellas" ?></span></h3>
+                        <h3><b>Capacidad: </b><span style="font-weight:normal"><?php echo $Capacidad." personas"?></span></h3>
+                        <h3><b>Horario: </b><span style="font-weight:normal"><?php echo $Horario ?></span></h3>
+                        <h3><b>Eventos: </b><span style="font-weight:normal"><?php echo $Eventos ?></span></h3>
+                        <h3><b>Dirección: </b><span style="font-weight:normal"><?php echo $Calle." - ".$Ciudad ?></span></h3>
                         <h3><b>Rango de edad del ambiente: </b><?php echo "Sin datos" ?>&nbsp;</h3>
                         <h3>Ocupación estimada: 
                             <table width="400px" height="auto">
@@ -194,7 +193,7 @@
                                     <td>Domingo:</b></td><td><?php echo "Sin datos" ?> %</td>
                                 </tr>
                             </table>
-						<h3>Juegos de mesa: <?php echo $JuegosDeMesa ?></h3>                 
+						<h3>Juegos de mesa: <span style="font-weight:normal"><?php echo $JuegosDeMesa ?></span></h3>                 
                     </div>
         </div>
                            </div>
