@@ -7,12 +7,15 @@
     exit();
     }
     // $conexion -> close();
+    // Variables Filtros
     if(isset($_POST['zona'])){
         $zona = $_POST['zona'];
     }
     if(isset($_POST['tipo'])){
         $tipo = $_POST['tipo'];
     }
+    // Variables Registro y Login
+   
     function listaLocales($conexion,$zona,$tipo){
         $listarRestaurante = "SELECT Nombre,Puntuacion FROM restaurante";
         $listarBar = "SELECT Nombre,Puntuacion FROM bar";
@@ -46,10 +49,13 @@
             }
         }
     }
-    function altaUsuario(){
-        
+    function altaUsuario($conexion,$alias,$clave){
+        if(!empty($alias) && !empty($clave)){
+        $registrarUsuario = "INSERT INTO perfil(Alias,Clave) VALUES('$alias','$clave')";
+        $resulRegistro = mysqli_query($conexion, $registrarUsuario);
+        }
     }
-    function bajaUsuario($alias,$clave){
+    function bajaUsuario($conexion,$alias,$clave){
 
     }
     // Función que comprueba si el usuario existe en la base de datos

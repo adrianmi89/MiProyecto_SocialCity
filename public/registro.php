@@ -1,4 +1,11 @@
 <!DOCTYPE html>
+<?php 
+    include "conexionBD.php";
+    //include "validar.php";
+    //error_reporting(0);
+
+
+?>
 <html>
   <head>
     <meta charset="utf-8">
@@ -18,6 +25,7 @@
     <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
     <link rel="shortcut icon" href="img/favicon.ico">
     <link rel="stylesheet" href="css/estilo.css">
+
 </head>
   <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
@@ -85,7 +93,7 @@
             <li class="header"></li>
             
             <li class="treeview">
-                <a href="index.php"><i class="fa fa-circle-o"></i> Inicio</a
+                <a href="index.php"><i class="fa fa-circle-o"></i> Inicio</a>
             </li>
             <li class="treeview">
               <a href="#">
@@ -139,13 +147,29 @@
 	                  	<div class="col-md-12">
                               <h1>REGISTRARSE</h1>
                             <div style="margin-top:100px;margin-left:35%;width:auto;height:auto">
-                                <form action="" method="GET">
+                                <form action="" method="POST">
                                     <fieldset width="200px" height=auto>
                                         <legend>Crea un perfil</legend>
-                                        <label for="Alias"><h2>Alias:</h2></label><input type="text" placeholder="Crea tu Alias" id="Alias"><br/><label><h2>Clave:</h2></label><label for="Pass"><input type="password" id="Pass">
+                                        <label for="Alias"><h2>Alias:</h2></label><input type="text" placeholder="Crea tu Alias" name="alias" id="Alias"><br/>
+                                        <label for="Clave"><h2>Clave:</h2></label><label for="Pass"><input type="password" name="clave" id="Clave">
+                                    
                                     </fieldset>
+                                    <button type="submit">Crear Cuenta</button>
                                 </form>
-                                <button type="submit">Crear Cuenta</button>
+                                <?php
+                                 if(isset($_POST['alias']) && isset($_POST['clave'])){
+                                      $alias = $_POST['alias'];
+                                      $clave = $_POST['clave'];
+                                    
+                                    if(true /*validarRegistro($alias,$clave)*/ == false){
+                                        echo "<span style='color:red;font-weight:bold'>El alias debe tener entre 6 y 24 letras y la contraseña entre 8 y 16 letras.";
+                                     }
+                                    else {
+                                       altaUsuario($conexion,$alias,$clave);
+                                       echo "Creado";
+                                    }
+                                  }
+                                ?>
                                 </div>
                             </div>
                </div>     
@@ -178,3 +202,5 @@
     <script src="js/bootstrap.min.js"></script>
     <!-- AdminLTE App -->
     <script src="js/app.min.js"></script>
+    </body>
+</html>
