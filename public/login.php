@@ -29,7 +29,7 @@
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b>SC</b>V</span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg" style="font-size:40px !important"><b>SocialCity</b></span>
+          <span class="logo-lg"><b>SocialCity</b></span>
         </a>
 
         <!-- Header Navbar: style can be found in header.less -->
@@ -39,39 +39,7 @@
             <span class="sr-only">Navegación</span>
           </a>
           <!-- Navbar Right Menu -->
-          <div class="navbar-custom-menu">
-            <ul class="nav navbar-nav">
-              <!-- Messages: style can be found in dropdown.less-->
-              
-              <!-- User Account: style can be found in dropdown.less -->
-              <li class="dropdown user user-menu">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <small class="bg-red">Conectado como-></small>
-                  <span class="hidden-xs">Adrianmi</span>
-                </a>
-                <ul class="dropdown-menu">
-                  <!-- User image -->
-                  <li class="user-header">
-                    
-                    <p>
-                      Diseñador Web
-                      <small>http:www.adrianmi.info</small>
-                    </p>
-                  </li>
-                  
-                  <!-- Menu Footer-->
-                  <li class="user-footer">
-                    
-                    <div class="pull-right">
-                      <a href="#" class="btn btn-default btn-flat">Cerrar</a>
-                    </div>
-                  </li>
-                </ul>
-              </li>
-              
-            </ul>
-          </div>
-
+          
         </nav>
       </header>
       <!-- Left side column. contains the logo and sidebar -->
@@ -113,7 +81,8 @@
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="registro.php"><i class="fa fa-circle-o">&nbsp; Usuario Nuevo</i></a></li>
+                <li><a href="registro.php"><i class="fa fa-circle-o">&nbsp;Nuevo usuario</i></a></li>
+                <li><a href="configuracion/usuario"><i class="fa fa-circle-o">&nbsp;Olvidé mi contraseña</i></a></li>
               </ul>
             </li>           
           </ul>
@@ -144,7 +113,7 @@
                                         <label for="User"><h3>Usuario:</h3></label><input type="text" id="User" placeholder="Tu Alias"><br/><label for="Pass"><h3>Clave:</h3></label><input type="password" id="Pass">
                                     </fieldset>
                                 </form>
-                                <button type="submit">Iniciar Sesión</button>
+                                <button type="submit"><a href="perfil.php">Iniciar Sesión</a></button>
                                 </div>
                             </div>
                </div>     
