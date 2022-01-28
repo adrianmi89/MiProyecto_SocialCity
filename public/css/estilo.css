@@ -38,6 +38,16 @@ button:hover{
 h1,h2,h3,h4,h5{
     font-weight:bold;
 }
+.mensaje{
+    font-size:20px;
+    color:darkgreen;
+    font-weight:bold;
+}
+.error{
+    font-size:20px;
+    color:red;
+    font-weight:bold;
+}
 input,select,textarea,button{
     margin:10px;
 }

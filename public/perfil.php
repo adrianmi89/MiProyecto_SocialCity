@@ -2,6 +2,9 @@
 <?php 
     include "conexionBD.php";
 
+    $alias = $_GET['alias'];
+    $clave = $_GET['clave'];
+    
 ?>
 <html>
   <head>
@@ -151,6 +154,27 @@
                               <!--@yield('Contenido')-->
                               <!--Fin Contenido-->
                             <h1>Mi Perfil</h1>
+                            <?php
+                                $alias = $_GET['alias'];
+                                $verDatos = "SELECT * FROM perfil WHERE Alias = '$alias'";
+                                $resulDatosPerfil = mysqli_query($conexion, $verDatos);
+            
+                                while($perfil = mysqli_fetch_row($resulDatosPerfil)){
+                                  $Nombre = $perfil[0]; 
+                                  $Sexo = $perfil[1];
+                                  $Edad = $perfil[2];
+                                  $EstadoCivil = $perfil[3];
+                                  $RamaProfesional = $perfil[4];
+                                  $Intereses = $perfil[5];
+                                }
+                            ?>
+                            <?php
+                                if(identifica($conexion,$alias,$clave)){
+                                  echo "Bienvenido $alias";
+                                }
+                                else
+                                  echo "ERROR. Este usuario no existe.";
+                                ?>
                             <div id="DatosPersona">
                                 <h2>Información básica</h2>
                                 <form action="" method="POST" width="200px" height="auto">
@@ -160,6 +184,7 @@
                                     <label for="EstadoCivil">Estado Civil: </label><input name="EstadoCivil" placeholder="Tu Estado"><br/>
                                     <label for="RamaProfesional">Rama Profesional: </label><input name="RamaProfesional" placeholder="Tu Profesión"><br/>
                                     <label for="Intereses">Intereses: </label><input name="Intereses" placeholder="Tus aficiones"><br/>
+                                    <button type="submit">Editar</button>
                                 </form>
                             </div>
                             <div id="Favoritos">

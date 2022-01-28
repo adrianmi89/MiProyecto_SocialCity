@@ -1,4 +1,11 @@
 <!DOCTYPE html>
+<?php 
+    include "conexionBD.php";
+    error_reporting(0);
+
+    $alias = $_GET['alias'];
+    $clave = $_GET['clave'];
+?>
 <html>
   <head>
     <meta charset="utf-8">
@@ -110,10 +117,19 @@
                                 <form action="" method="GET">
                                     <fieldset width="200px" height="auto">
                                         <legend>Vete a tu Pertil</legend>
-                                        <label for="User"><h3>Usuario:</h3></label><input type="text" id="User" placeholder="Tu Alias"><br/><label for="Pass"><h3>Clave:</h3></label><input type="password" id="Pass">
+                                        <label for="User"><h3>Usuario:</h3></label><input type="text" id="User" name="alias" placeholder="Tu Alias"><br/>
+                                        <label for="Pass"><h3>Clave:</h3></label><input type="password" id="Pass" name="clave">
                                     </fieldset>
+                                    <button type='submit'>Iniciar Sesión</a></button>
                                 </form>
-                                <button type="submit"><a href="perfil.php">Iniciar Sesión</a></button>
+                                <?php
+                                if(identifica($conexion,$alias,$clave)){
+                                  echo "<span style='font-size:20px;color:darkgreen;font-weight:bold' class='mensaje'>Bienvenido ".$alias." </span";
+                                  echo "<button type='submit'><a href='perfil.php?alias=$alias'>Ir Mi Perfil</a></button>";
+                                }
+                                else
+                                  echo "<span style='font-size:20px;color:red;font-weight:bold' class='error'>ERROR. Este usuario no existe.</span>";
+                                ?>
                                 </div>
                             </div>
                </div>     

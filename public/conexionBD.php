@@ -59,8 +59,17 @@
 
     }
     // Función que comprueba si el usuario existe en la base de datos
-    function identifica($alias,$clave){
+    function identifica($conexion,$alias,$clave){
+        if(!empty($alias) && !empty($clave)){
+            $buscaUsuario = "SELECT * FROM perfil WHERE Alias = '$alias' AND Clave = '$clave'";
+            $resulBusca = mysqli_query($conexion, $buscaUsuario);
 
+            if($perfil = mysqli_num_rows($resulBusca)){
+                return true;
+            }
+            else
+                return false;
+            }
     }
     // Función para añadir un local a la lista Favoritos del usuario
     function addFavorito($nombre){
