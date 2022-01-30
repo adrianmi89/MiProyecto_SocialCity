@@ -3,8 +3,45 @@
     include "conexionBD.php";
 
     $alias = $_GET['alias'];
-    $clave = $_GET['clave'];
-    
+
+    /*$nombre = $_POST['Nombre'];
+    $sexo = $_POST['Sexo'];
+    $edad = $_POST['Edad'];
+    $estadoCivil = $_POST['EstadoCivil'];
+    $ramaProfesional = $_POST['RamaProfesional'];
+    $intereses = $_POST['Intereses'];
+    */
+    // Actualizar Perfil
+    if(!empty($_POST['Nombre'])){
+      $nombre = $_POST['Nombre'];
+      $actualizarPerfil = "UPDATE perfil SET Nombre = '$nombre' WHERE Alias = '$alias'"; 
+      $resulActualizarPerfil = mysqli_query($conexion, $actualizarPerfil);
+      }
+      if(!empty($_POST['Sexo'])){
+        $sexo = $_POST['Sexo'];
+        $actualizarPerfil = "UPDATE perfil SET Sexo = '$sexo' WHERE Alias = '$alias'"; 
+        $resulActualizarPerfil = mysqli_query($conexion, $actualizarPerfil);
+        }
+        if(!empty($_POST['Edad'])){
+          $edad = $_POST['Edad'];
+          $actualizarPerfil = "UPDATE perfil SET Edad = '$edad' WHERE Alias = '$alias'"; 
+          $resulActualizarPerfil = mysqli_query($conexion, $actualizarPerfil);
+          }
+          if(!empty($_POST['EstadoCivil'])){
+            $estadoCivil = $_POST['EstadoCivil'];
+            $actualizarPerfil = "UPDATE perfil SET EstadoCivil = '$estadoCivil' WHERE Alias = '$alias'"; 
+            $resulActualizarPerfil = mysqli_query($conexion, $actualizarPerfil);
+            }
+            if(!empty($_POST['RamaProfesional'])){
+              $ramaProfesional = $_POST['RamaProfesional'];
+              $actualizarPerfil = "UPDATE perfil SET RamaProfesional = '$ramaProfesional' WHERE Alias = '$alias'"; 
+              $resulActualizarPerfil = mysqli_query($conexion, $actualizarPerfil);
+              }
+              if(!empty($_POST['Intereses'])){
+                $intereses = $_POST['Intereses'];
+                $actualizarPerfil = "UPDATE perfil SET Intereses = '$intereses' WHERE Alias = '$alias'"; 
+                $resulActualizarPerfil = mysqli_query($conexion, $actualizarPerfil);
+                }
 ?>
 <html>
   <head>
@@ -53,15 +90,15 @@
               <!-- User Account: style can be found in dropdown.less -->
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <span class="hidden-xs"><?php echo "Adrianmi" ?></span>
+                  <span class="hidden-xs"><?php echo "<span style='color:white;font-size:28px'>".$alias."</span>" ?></span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
                     
                     <p>
-                      <a href="perfil.php">Mi Perfil</a>
-                      <button>Cerrar Sesión</button>
+                      <button style="border:3px solid white;radius:30%;width:90%"><a style="color:white" href="login.php">Cerrar Sesión</a></button>
+                      <button style="border:3px solid white;radius:30%;width:90%"><a style="color:white" href="login.php">Darse de Baja</a></button>
                     </p>
                   </li>
                   
@@ -69,7 +106,7 @@
                   <li class="user-footer">
                     
                     <div class="pull-right">
-                      <a href="#" class="btn btn-default btn-flat">Cerrar</a>
+                     
                     </div>
                   </li>
                 </ul>
@@ -155,35 +192,30 @@
                               <!--Fin Contenido-->
                             <h1>Mi Perfil</h1>
                             <?php
-                                $alias = $_GET['alias'];
                                 $verDatos = "SELECT * FROM perfil WHERE Alias = '$alias'";
                                 $resulDatosPerfil = mysqli_query($conexion, $verDatos);
-            
+
                                 while($perfil = mysqli_fetch_row($resulDatosPerfil)){
-                                  $Nombre = $perfil[0]; 
-                                  $Sexo = $perfil[1];
-                                  $Edad = $perfil[2];
-                                  $EstadoCivil = $perfil[3];
-                                  $RamaProfesional = $perfil[4];
-                                  $Intereses = $perfil[5];
+                                  $Alias = $perfil[0]; 
+                                  $Clave = $perfil[1];
+                                  $Nombre = $perfil[2]; 
+                                  $Sexo = $perfil[3];
+                                  $Edad = $perfil[4];
+                                  $EstadoCivil = $perfil[5];
+                                  $RamaProfesional = $perfil[6];
+                                  $Intereses = $perfil[7];
                                 }
                             ?>
-                            <?php
-                                if(identifica($conexion,$alias,$clave)){
-                                  echo "Bienvenido $alias";
-                                }
-                                else
-                                  echo "ERROR. Este usuario no existe.";
-                                ?>
+                          
                             <div id="DatosPersona">
                                 <h2>Información básica</h2>
                                 <form action="" method="POST" width="200px" height="auto">
-                                    <label for="Nombre">Nombre: </label><input name="Nombre" placeholder="Tu Nombre"><br/>
-                                    <label for="Sexo">Sexo: </label><input name="Sexo" placeholder="Tu Sexo"><br/>
-                                    <label for="Edad">Edad: </label><input name="Edad" placeholder="Tu Edad"><br/>
-                                    <label for="EstadoCivil">Estado Civil: </label><input name="EstadoCivil" placeholder="Tu Estado"><br/>
-                                    <label for="RamaProfesional">Rama Profesional: </label><input name="RamaProfesional" placeholder="Tu Profesión"><br/>
-                                    <label for="Intereses">Intereses: </label><input name="Intereses" placeholder="Tus aficiones"><br/>
+                                    <label for="Nombre">Nombre: </label><input name="Nombre" value="<?php echo $Nombre ?>"><br/>
+                                    <label for="Sexo">Sexo: </label><input name="Sexo" value="<?php echo $Sexo ?>" placeholder="Tu Sexo"><br/>
+                                    <label for="Edad">Edad: </label><input name="Edad" value="<?php echo $Edad ?>"><br/>
+                                    <label for="EstadoCivil">Estado Civil: </label><input name="EstadoCivil" value="<?php echo $EstadoCivil ?>"><br/>
+                                    <label for="RamaProfesional">Rama Profesional: </label><input name="RamaProfesional" value="<?php echo $RamaProfesional ?>"><br/>
+                                    <label for="Intereses">Intereses: </label><input name="Intereses" value="<?php echo $Intereses ?>"><br/>
                                     <button type="submit">Editar</button>
                                 </form>
                             </div>
