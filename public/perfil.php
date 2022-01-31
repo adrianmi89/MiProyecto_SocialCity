@@ -42,6 +42,9 @@
                 $actualizarPerfil = "UPDATE perfil SET Intereses = '$intereses' WHERE Alias = '$alias'"; 
                 $resulActualizarPerfil = mysqli_query($conexion, $actualizarPerfil);
                 }
+    if(!empty($_POST['borrar'])){
+      bajaUsuario($conexion,$alias);
+    }
 ?>
 <html>
   <head>
@@ -98,8 +101,13 @@
                     
                     <p>
                       <button style="border:3px solid white;radius:30%;width:90%"><a style="color:white" href="login.php">Cerrar Sesión</a></button>
-                      <button style="border:3px solid white;radius:30%;width:90%"><a style="color:white" href="login.php">Darse de Baja</a></button>
-                    </p>
+                      
+                      <form action="" method="POST">
+                        <input name="borrar" value="borrar" type="hidden"/>
+                        <button style="border:3px solid white;radius:30%;width:90%" type="submit"><a style="color:white">Borrar Cuenta</a></button>
+                      </form>
+                      
+                 </p>
                   </li>
                   
                   <!-- Menu Footer-->

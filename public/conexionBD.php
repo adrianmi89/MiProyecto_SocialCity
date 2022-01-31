@@ -51,12 +51,13 @@
     }
     function altaUsuario($conexion,$alias,$clave){
         if(!empty($alias) && !empty($clave)){
-        $registrarUsuario = "INSERT INTO perfil(Alias,Clave) VALUES('$alias','$clave')";
-        $resulRegistro = mysqli_query($conexion, $registrarUsuario);
+            $registrarUsuario = "INSERT INTO perfil(Alias,Clave) VALUES('$alias','$clave')";
+            $resulRegistro = mysqli_query($conexion, $registrarUsuario);
         }
     }
-    function bajaUsuario($conexion,$alias,$clave){
-
+    function bajaUsuario($conexion,$alias){
+        $eliminarUsuario = "DELETE FROM perfil WHERE Alias = '$alias'";
+        $resulElimina = mysqli_query($conexion, $eliminarUsuario);
     }
     // Función que comprueba si el usuario existe en la base de datos
     function identifica($conexion,$alias,$clave){
