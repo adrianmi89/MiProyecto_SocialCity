@@ -14,11 +14,15 @@
     if(isset($_POST['tipo'])){
         $tipo = $_POST['tipo'];
     }
+    if(isset($_POST['capacidad'])){
+        $capacidad = $_POST['capacidad'];
+    }
     // Variables Registro y Login
    
-    function listaLocales($conexion,$zona,$tipo){
+    function listaLocales($conexion,$zona,$tipo,$capacidad){
         $listarRestaurante = "SELECT Nombre,Puntuacion FROM restaurante";
         $listarBar = "SELECT Nombre,Puntuacion FROM bar";
+
         // Filtrar por zona geográfica
         if(isset($zona) != NULL){
             $listarRestaurante = "SELECT Nombre,Puntuacion FROM restaurante INNER JOIN direccion
@@ -31,16 +35,24 @@
         if(isset($tipo) != NULL){
             $listarRestaurante = "SELECT Nombre,Puntuacion FROM restaurante WHERE Nombre LIKE '%$tipo%'";
         }
-        $resulRestaurante = mysqli_query($conexion, $listarRestaurante);
-        $resulBar = mysqli_query($conexion, $listarBar);
-
-        // Le pasamos a restaurante.php el nombre del local para que lo identifique.
-        while($restaurante = mysqli_fetch_row($resulRestaurante)){
-            $Nombre = $restaurante[0];
-            echo "<a style='color:black' href = 'restaurante.php?nombre=$Nombre'>".$restaurante[0]."<br/>Valoración: ".$restaurante[1]."</a><br/><br/>";
+        // Filtrar por tamaño del bar
+        if(isset($capacidad) != NULL){
+            $listarBar = "SELECT Nombre,Puntuacion FROM bar WHERE Capacidad LIKE '%$capacidad%'";
         }
 
-        // Mostrar los bares solo si no le pasamos el tipo de restaurante
+        $resulRestaurante = mysqli_query($conexion, $listarRestaurante);
+        $resulBar = mysqli_query($conexion, $listarBar);
+        
+        // Le pasamos a restaurante.php el nombre del local para que lo identifique.
+        if(isset($capacidad) == NULL){
+            while($restaurante = mysqli_fetch_row($resulRestaurante)){
+                $Nombre = $restaurante[0];
+                echo "<a style='color:black' href = 'restaurante.php?nombre=$Nombre'>".$restaurante[0]."<br/>Valoración: ".$restaurante[1]."</a><br/><br/>";
+            }
+        }
+        
+
+        // Mostrar los bares solo si no le pasamos el tipo de restaurante o si le pasamos la capacidad de bar
         // Le pasamos a restaurante.php el nombre del local para que lo identifique.
         if(isset($tipo) == NULL){
             while($bar = mysqli_fetch_row($resulBar)){
@@ -50,9 +62,16 @@
         }
     }
     function altaUsuario($conexion,$alias,$clave){
+        // Comprobamos si el usuario ya existe en la base de datos
+        $existeUsuario = "SELECT Alias FROM perfil WHERE Alias = '$alias'";
+        $existe = mysqli_query($conexion, $existeUsuario);
+
         if(!empty($alias) && !empty($clave)){
             $registrarUsuario = "INSERT INTO perfil(Alias,Clave) VALUES('$alias','$clave')";
             $resulRegistro = mysqli_query($conexion, $registrarUsuario);
+        }
+        else if($existe == true){
+            echo "<span style='color:red';font-size:20px;font-weight:bold>ERROR. Este alias ya existe.</span>";
         }
     }
     function bajaUsuario($conexion,$alias){

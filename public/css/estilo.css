@@ -13,6 +13,7 @@ button:hover{
 }
 
 #Filtros{
+    width:80%;
     margin-top:80px;
 }
 #FiltroZona{
@@ -25,16 +26,17 @@ button:hover{
     margin-left:5%;
     margin-top:-40px;
 }
+#FiltroBar{
+    float:left;
+    margin-left:5%;
+    margin-top:-40px;
+}
 #FiltroEdad{
     float:left;
-    margin-left:5%;
-    margin-top:-40px;
+    margin-left:2%;
+    margin-top:0px;
 }
-#FiltroJuegos{
-    float:left;
-    margin-left:5%;
-    margin-top:-40px;
-}
+
 h1,h2,h3,h4,h5{
     font-weight:bold;
 }

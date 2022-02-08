@@ -188,36 +188,49 @@
                                       </select>
                                       <button type="submit">Mostrar</button>
                                     </form>
-                                      
                                   </div>
                                   <div id="FiltroRestaurante">
-                                  <span style="font-size:25px">Tipo de Restaurante</span>
-                                  <form action="" method="POST">
-                                      <select value="tipo" name="tipo">
-                                          <option>--¿Que te apetece?--</option>
-                                          <option value="Marisquería">Marisquería</option>
-                                          <option value="Pulpería">Pulpería</option>
-                                          <option value="Restaurante Japonés">Restaurante Japonés</option>
-                                          <option value="Restaurante Chino">Restaurante Chino</option>
-                                          <option value="Restaurante Hindú">Restaurante Hindú</option>
-                                          <option value="Restaurante Italiano">Restaurante Italiano</option>
-                                          <option value="Restaurante Mejicano">Restaurante Mejicano</option>
-                                      </select>
-                                      <button type="submit">Mostrar</button>
-                                  </form>    
+                                    <span style="font-size:25px">Tipo de Restaurante</span>
+                                    <form action="" method="POST">
+                                        <select value="tipo" name="tipo">
+                                            <option>--¿Que te apetece?--</option>
+                                            <option value="Marisquería">Marisquería</option>
+                                            <option value="Pulpería">Pulpería</option>
+                                            <option value="Restaurante Japonés">Restaurante Japonés</option>
+                                            <option value="Restaurante Chino">Restaurante Chino</option>
+                                            <option value="Restaurante Hindú">Restaurante Hindú</option>
+                                            <option value="Restaurante Italiano">Restaurante Italiano</option>
+                                            <option value="Restaurante Mejicano">Restaurante Mejicano</option>
+                                        </select>
+                                        <button type="submit">Mostrar</button>
+                                    </form>    
+                                  </div>
+                                  <div id="FiltroBar">
+                                    <span style="font-size:25px">Tamaño del Bar</span>
+                                    <form action="" method="POST">
+                                        <select value="capacidad" name="capacidad">
+                                            <option>--Capacidad Max--</option>
+                                            <option value="200">200 personas</option>
+                                            <option value="100">100 personas</option>
+                                            <option value="80">80 personas</option>
+                                            <option value="50">50 personas</option>
+                                            <option value="30">30 personas</option>
+                                        </select>
+                                        <button type="submit">Mostrar</button>
+                                    </form>    
                                   </div>
                                   <div id="FiltroEdad">
-                                  <span style="font-size:25px">Rango de Edad</span>
-                                    <form action="" method="POST">
-                                      <select value="--¿Que te apetece?--">
-                                          <option name="edad">--¿Cual es tu rango?--</option>
-                                          <option value="Joven">15-29</option>
-                                          <option value="Adulto">30-49</option>
-                                          <option value="Mayor">49-64</option>
-                                          <option value="MuyMayor">65-99</option>
-                                      </select>
-                                      <button type="submit">Mostrar</button>
-                                  </form>
+                                    <span style="font-size:25px">Rango de Edad</span>
+                                      <form action="" method="POST">
+                                        <select value="--¿Que te apetece?--">
+                                            <option name="edad">--¿Cual es tu rango?--</option>
+                                            <option value="Joven">15-29</option>
+                                            <option value="Adulto">30-49</option>
+                                            <option value="Mayor">49-64</option>
+                                            <option value="MuyMayor">65-99</option>
+                                        </select>
+                                        <button type="submit">Mostrar</button>
+                                    </form>
                                   </div>
                                   <!--<div id="FiltroJuegos">
                                     <span style="font-size:25px">Juegos de Mesa del Bar</span>
@@ -236,7 +249,7 @@
                             </div>
                             <div id="Locales" style="margin-top:100px; margin-left:5%;width:auto;height:auto;font-size:22px;font-weight:bold;">
                                 <?php 
-                                listaLocales($conexion,$zona,$tipo)
+                                listaLocales($conexion,$zona,$tipo,$capacidad)
                                 ?>
                             </div>
                             

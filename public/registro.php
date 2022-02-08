@@ -166,7 +166,7 @@
                                      }
                                     else {
                                        altaUsuario($conexion,$alias,$clave);
-                                       echo "Creado";
+  
                                     }
                                   }
                                 ?>
