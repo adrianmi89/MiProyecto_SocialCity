@@ -65,6 +65,7 @@
     <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
     <link rel="shortcut icon" href="img/favicon.ico">
     <link rel="stylesheet" href="css/estilo.css">
+    <link href="https://fonts.googleapis.com/css2?family=Redressed&display=swap" rel="stylesheet">
 </head>
   <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
@@ -76,7 +77,7 @@
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b>SC</b>V</span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>SocialCity</b></span>
+          <span class="logo-lg" style="font-size:50px !important;font-family: 'Redressed', cursive;"><b>SocialCity</b></span>
         </a>
 
         <!-- Header Navbar: style can be found in header.less -->
@@ -138,41 +139,40 @@
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-laptop"></i>
-                <span>Inicio</span>
+                <span style="font-size:27px;font-family: 'Redressed', cursive;">Inicio</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="index.php"><i class="fa fa-circle-o"></i> Inicio</a></li>
+                <li><a href="index.php" style="font-size:20px;font-family: 'Redressed', cursive;"><i class="fa fa-circle-o"></i> Inicio</a></li>
               </ul>
             </li>
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-laptop"></i>
-                <span>Acerca de...</span>
+                <span style="font-size:27px;font-family: 'Redressed', cursive;">Acerca de...</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="socialcity.html"><i class="fa fa-circle-o"></i>Socialcity</a></li>
+                <li><a href="socialcity.html" style="font-size:20px;font-family: 'Redressed', cursive;"><i class="fa fa-circle-o"></i>Socialcity</a></li>
               </ul>
             </li>
             <li class="treeview">
               <a href="#">
-                <i class="fa fa-folder"></i> <span>Iniciar Sesión</span>
+                <i class="fa fa-folder"></i> <span style="font-size:27px;font-family: 'Redressed', cursive;">Iniciar Sesión</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="login.php"><i class="fa fa-circle-o"></i>Login</a></li>
+                <li><a href="login.php" style="font-size:20px;font-family: 'Redressed', cursive;"><i class="fa fa-circle-o"></i>Login</a></li>
                 
               </ul>
             </li>  
             <li class="treeview">
               <a href="#">
-                <i class="fa fa-folder"></i> <span>Registrarse</span>
+                <i class="fa fa-folder"></i> <span style="font-size:27px;font-family: 'Redressed', cursive;">Registrarse</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="registro.php"><i class="fa fa-circle-o">Nuevo usuario</i></a></li>
-                <li><a href="configuracion/usuario"><i class="fa fa-circle-o">Olvidé mi contraseña</i></a></li>
+                <li><a href="registro.php" style="font-size:20px;font-family: 'Redressed', cursive;"><i class="fa fa-circle-o"> Usuario Nuevo</i></a></li>
               </ul>
             </li>           
           </ul>

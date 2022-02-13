@@ -47,7 +47,9 @@
         if(isset($capacidad) == NULL){
             while($restaurante = mysqli_fetch_row($resulRestaurante)){
                 $Nombre = $restaurante[0];
-                echo "<a style='color:black' href = 'restaurante.php?nombre=$Nombre'>".$restaurante[0]."<br/>Valoración: ".$restaurante[1]."</a><br/><br/>";
+                echo "<div style='padding:5px;border:5px solid black;border-radius:10%;width:400px;height:auto;background-color:white'>";
+                echo "<a style='color:black' href = 'restaurante.php?nombre=$Nombre'>".$restaurante[0]."<br/>Valoración: ".$restaurante[1]."</a>";
+                echo "</div><br/>";
             }
         }
         
@@ -57,7 +59,9 @@
         if(isset($tipo) == NULL){
             while($bar = mysqli_fetch_row($resulBar)){
                 $Nombre = $bar[0];
-                echo "<a style='color:black' href = 'bar.php?nombre=$Nombre'>".$bar[0]."<br/>Valoración: ".$bar[1]."</a><br/><br/>";
+                echo "<div style='padding:5px;border:5px solid black;border-radius:10%;width:400px;height:auto;background-color:white'>";
+                echo "<a style='color:black' href = 'bar.php?nombre=$Nombre'>".$bar[0]."<br/>Valoración: ".$bar[1]."</a>";
+                echo "</div><br/>";
             }
         }
     }

@@ -18,23 +18,23 @@ button:hover{
 }
 #FiltroZona{
     float:left;
-    margin-left:2%;
+    margin-left:1%;
     margin-top:-40px;
 }
 #FiltroRestaurante{
     float:left;
-    margin-left:5%;
+    margin-left:3%;
     margin-top:-40px;
 }
 #FiltroBar{
     float:left;
-    margin-left:5%;
+    margin-left:3%;
     margin-top:-40px;
 }
 #FiltroEdad{
-    float:left;
-    margin-left:2%;
-    margin-top:0px;
+    float:right;
+    margin-right:1%;
+    margin-top:-40px;
 }
 
 h1,h2,h3,h4,h5{
@@ -52,4 +52,9 @@ h1,h2,h3,h4,h5{
 }
 input,select,textarea,button{
     margin:10px;
+}
+option{
+    background-color:black;
+    color:white;
+    font-weight:bold;
 }
