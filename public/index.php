@@ -147,7 +147,7 @@
       <div class="content-wrapper">
         
         <!-- Main content -->
-        <section class="content">
+        <section class="content" style="background-color:#3c8dbc !important">
           
           <div class="row">
             <div class="col-md-12">
@@ -160,13 +160,13 @@
                               <!--@yield('Contenido')-->
                               <!--Fin Contenido-->
                               <div style="padding:3%">
-                              <div style="width:80%;height:300px;background-color:white;color:black;">
+                              <div style="width:80%;height:300px;color:black;">
                                 <h1>Listado de Bares y Restaurantes</h1>
                                 <div style="float:left;margin-left:10%">
-                                  <img src="img/bar.png" width="400px" height="200px">
+                                  <img src="img/bar.png" width="300px" height="350px">
                                 </div>
-                                <div style="float:right;margin-right:20%">
-                                  <img src="img/comer.png" width="400px" height="200px">
+                                <div style="float:right;margin-right:10%">
+                                  <img src="img/comer.jpeg" width="400px" height="200px">
                                 </div>
                               </div>
                                 <h2>Filtrar por...</h2>
@@ -257,12 +257,10 @@
                                   </div>-->
                                   <br/><br/>
                             </div>
-                            <div id="Locales" style="margin-top:100px; margin-left:5%;width:auto;height:auto;font-size:22px;font-weight:bold;">
+                            <div id="Locales" style="margin-top:100px;width:auto;height:auto;font-size:32px;font-weight:bold;">
                                 <?php 
                                 listaLocales($conexion,$zona,$tipo,$capacidad)
                                 ?>
-                            </div>
-                            </div>
                             
                </div>     
 						</div>

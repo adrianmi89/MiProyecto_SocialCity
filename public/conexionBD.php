@@ -20,7 +20,7 @@
     // Variables Registro y Login
    
     function listaLocales($conexion,$zona,$tipo,$capacidad){
-        $listarRestaurante = "SELECT Nombre,Puntuacion FROM restaurante";
+        $listarRestaurante = "SELECT Nombre,Puntuacion,Foto FROM restaurante";
         $listarBar = "SELECT Nombre,Puntuacion FROM bar";
 
         // Filtrar por zona geográfica
@@ -47,9 +47,14 @@
         if(isset($capacidad) == NULL){
             while($restaurante = mysqli_fetch_row($resulRestaurante)){
                 $Nombre = $restaurante[0];
-                echo "<div style='padding:5px;border:5px solid black;border-radius:10%;width:400px;height:auto;background-color:white'>";
-                echo "<a style='color:black' href = 'restaurante.php?nombre=$Nombre'>".$restaurante[0]."<br/>Valoración: ".$restaurante[1]."</a>";
+                $Foto = $restaurante[7];
+                echo "<div style='padding-left:3%;margin-left:10%;margin-right:10%;border:5px solid black;border-radius:10%;width:70%;height:320px;background-color: #3c8dbc'>";
+                echo "<a style='color:white' href = 'restaurante.php?nombre=$Nombre'>".$restaurante[0]."<br/>Valoración: ".$restaurante[1]."<img style='float:left;width:500px;height:auto' src='$Foto'/></a>";
+                echo "<div style='position:relative;margin-left:45%;margin-top:-35px;width:auto height:auto'>";
+                echo "<a src='https://media-cdn.tripadvisor.com/media/photo-s/0c/67/fb/3a/pulpeira-de-melide.jpg'><img src='https://media-cdn.tripadvisor.com/media/photo-s/0c/67/fb/3a/pulpeira-de-melide.jpg' width='400px' height='200px'/></a>";
+                echo "</div>";
                 echo "</div><br/>";
+                
             }
         }
         
@@ -59,8 +64,11 @@
         if(isset($tipo) == NULL){
             while($bar = mysqli_fetch_row($resulBar)){
                 $Nombre = $bar[0];
-                echo "<div style='padding:5px;border:5px solid black;border-radius:10%;width:400px;height:auto;background-color:white'>";
-                echo "<a style='color:black' href = 'bar.php?nombre=$Nombre'>".$bar[0]."<br/>Valoración: ".$bar[1]."</a>";
+                echo "<div style='padding-left:3%;margin-left:10%;margin-right:10%;border:5px solid black;border-radius:10%;width:70%;height:320px;background-color: #3c8dbc'>";
+                echo "<a style='color:white' href = 'restaurante.php?nombre=$Nombre'>".$bar[0]."<br/>Valoración: ".$bar[1]."<img style='float:left;width:500px;height:auto' src='$Foto'/></a>";
+                echo "<div style='position:relative;margin-left:45%;margin-top:-35px;width:auto height:auto'>";
+                echo "<a src='https://media-cdn.tripadvisor.com/media/photo-s/0c/67/fb/3a/pulpeira-de-melide.jpg'><img src='https://media-cdn.tripadvisor.com/media/photo-s/0c/67/fb/3a/pulpeira-de-melide.jpg' width='400px' height='200px'/></a>";
+                echo "</div>";
                 echo "</div><br/>";
             }
         }

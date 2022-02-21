@@ -174,9 +174,28 @@
                       $Ciudad = $direccion[3];
                     }
                     ?>
-                    <div style='padding:5px;border:5px solid white;border-radius:10%;background-color:black;color:white;width:600px;height:100px'>
+                    <div style='padding-left:3%;margin-left:5%;margin-right:5%;border:5px solid black;border-radius:10%;width:90%;height:180px;background-color: #3c8dbc;color:white;font-size:36px'>
+                      <h1 style="font-size:42px"><?php echo $Nombre ?></h1>
+                      <form>
+                          <p class="clasificacion">
+                            <input style="display:none !important" id="radio1" type="radio" name="estrellas" value="5"><!--
+                            --><label for="radio1">★</label><!--
+                            --><input style="display:none !important" id="radio2" type="radio" name="estrellas" value="4"><!--
+                            --><label for="radio2">★</label><!--
+                            --><input style="display:none !important" id="radio3" type="radio" name="estrellas" value="3"><!--
+                            --><label for="radio3">★</label><!--
+                            --><input style="display:none !important" id="radio4" type="radio" name="estrellas" value="2"><!--
+                            --><label for="radio4">★</label><!--
+                            --><input style="display:none !important" id="radio5" type="radio" name="estrellas" value="1"><!--
+                            --><label for="radio5">★</label>
+                          </p>
+                      </form>
+                  </div>
+                    <div style='position:absolute;float:right;margin-left:45%;margin-top:50px;width:auto height:auto'>
+                      <a src='https://media-cdn.tripadvisor.com/media/photo-s/0c/67/fb/3a/pulpeira-de-melide.jpg'>
+                      <img src='https://media-cdn.tripadvisor.com/media/photo-s/0c/67/fb/3a/pulpeira-de-melide.jpg'/></a>
                     </div>
-                    <div style="margin-top:50px;margin-left:2%;width:70%;height:auto">
+                    <div style="margin-top:50px;margin-left:2%;width:30%;height:auto;">
                         <h3><b>Valoración:</b><span style="font-weight:normal"><?php echo $Puntuacion." estrellas" ?></span></h3>
                         <h3><b>Capacidad: </b><span style="font-weight:normal"><?php echo $Capacidad." personas"?></span></h3>
                         <h3><b>Horario: </b><span style="font-weight:normal"><?php echo $Horario ?></span></h3>
