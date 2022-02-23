@@ -1,8 +1,18 @@
 <!DOCTYPE html>
 <?php 
     include "conexionBD.php";
-    error_reporting(0);
 
+    $zona = $tipo = $capacidad = NULL;
+
+    if(isset($_POST['zona'])){
+      $zona = $_POST['zona'];
+    }
+    if(isset($_POST['tipo'])){
+         $tipo = $_POST['tipo'];
+   }
+    if(isset($_POST['capacidad'])){
+        $capacidad = $_POST['capacidad'];
+    }
 ?>
 <html>
 
@@ -160,20 +170,23 @@
                               <!--@yield('Contenido')-->
                               <!--Fin Contenido-->
                               <div style="padding:3%">
-                              <div style="width:80%;height:300px;color:black;">
-                                <h1>Listado de Bares y Restaurantes</h1>
-                                <div style="float:left;margin-left:10%">
-                                  <img src="img/bar.png" width="300px" height="350px">
-                                </div>
-                                <div style="float:right;margin-right:10%">
-                                  <img src="img/comer.jpeg" width="400px" height="200px">
+                                <div style="font-size:32px;width:80%;height:300px;color:black;">
+                                  <h1 style="font-size:60px;font-family: 'Redressed', cursive;">Listado de Bares y Restaurantes</h1>
+                                  <div style="float:left;margin-left:10%">
+                                    <img src="img/bar.png" width="300px" height="350px">
+                                  </div>
+                                  <div style="float:right;margin-right:10%">
+                                    <img src="img/comer.jpeg" width="400px" height="200px">
+                                  </div>
+                                  <div style="clear:both">
+                                    <h2 style="font-size:40px;">Filtrar por...</h2>
+                                  </div>
                                 </div>
                               </div>
-                                <h2>Filtrar por...</h2>
-                              
                               <div id="Filtros">
+                                  
                                   <div id="FiltroZona">
-                                    <span style="font-size:25px">Zona</span>
+                                    <span style="font-size:28px;">Zona</span>
                                     <form action="" method="POST">
                                         <select id="zona" name="zona" value="--Selecciona zona--">
                                             <option>--Selecciona zona--</option>
@@ -200,7 +213,7 @@
                                       </form>
                                   </div>
                                   <div id="FiltroRestaurante">
-                                    <span style="font-size:25px">Tipo de Restaurante</span>
+                                    <span style="font-size:28px;">Tipo de Restaurante</span>
                                     <form action="" method="POST">
                                         <select value="tipo" name="tipo">
                                             <option>--¿Que te apetece?--</option>
@@ -216,7 +229,7 @@
                                     </form>    
                                   </div>
                                   <div id="FiltroBar">
-                                    <span style="font-size:25px">Tamaño del Bar</span>
+                                    <span style="font-size:28px;">Tamaño del Bar</span>
                                     <form action="" method="POST">
                                         <select value="capacidad" name="capacidad">
                                             <option>--Capacidad Max--</option>
@@ -230,7 +243,7 @@
                                     </form>    
                                   </div>
                                   <div id="FiltroEdad">
-                                    <span style="font-size:25px">Rango de Edad</span>
+                                    <span style="font-size:28px;">Rango de Edad</span>
                                       <form action="" method="POST">
                                         <select value="--¿Que te apetece?--">
                                             <option name="edad">--¿Cual es tu rango?--</option>
@@ -259,7 +272,7 @@
                             </div>
                             <div id="Locales" style="margin-top:100px;width:auto;height:auto;font-size:32px;font-weight:bold;">
                                 <?php 
-                                listaLocales($conexion,$zona,$tipo,$capacidad)
+                                listaLocales($zona,$tipo,$capacidad)
                                 ?>
                             
                </div>     

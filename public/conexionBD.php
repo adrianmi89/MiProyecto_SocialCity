@@ -8,64 +8,59 @@
     }
     // $conexion -> close();
     // Variables Filtros
-    if(isset($_POST['zona'])){
-        $zona = $_POST['zona'];
-    }
-    if(isset($_POST['tipo'])){
-        $tipo = $_POST['tipo'];
-    }
-    if(isset($_POST['capacidad'])){
-        $capacidad = $_POST['capacidad'];
-    }
+ 
     // Variables Registro y Login
    
-    function listaLocales($conexion,$zona,$tipo,$capacidad){
+    function listaLocales($zona,$tipo,$capacidad){
+        global $conexion;
         $listarRestaurante = "SELECT Nombre,Puntuacion,Foto FROM restaurante";
         $listarBar = "SELECT Nombre,Puntuacion FROM bar";
 
         // Filtrar por zona geográfica
-        if(isset($zona) != NULL){
-            $listarRestaurante = "SELECT Nombre,Puntuacion FROM restaurante INNER JOIN direccion
+        if(!empty($zona)){
+            $listarRestaurante = "SELECT Nombre,Puntuacion,Foto FROM restaurante INNER JOIN direccion
             ON DIRECCION_NombreLocal = NombreLocal WHERE zona = '$zona'";
 
             $listarBar = "SELECT Nombre,Puntuacion FROM bar INNER JOIN direccion
             ON DIRECCION_NombreLocal = NombreLocal WHERE zona = '$zona'";
         }
         // Filtrar por tipo de restaurante
-        if(isset($tipo) != NULL){
-            $listarRestaurante = "SELECT Nombre,Puntuacion FROM restaurante WHERE Nombre LIKE '%$tipo%'";
+        if(!empty($tipo)){
+            $listarRestaurante = "SELECT Nombre,Puntuacion,Foto FROM restaurante WHERE Nombre LIKE '%$tipo%'";
         }
         // Filtrar por tamaño del bar
-        if(isset($capacidad) != NULL){
+        if(!empty($capacidad)){
             $listarBar = "SELECT Nombre,Puntuacion FROM bar WHERE Capacidad LIKE '%$capacidad%'";
         }
 
         $resulRestaurante = mysqli_query($conexion, $listarRestaurante);
         $resulBar = mysqli_query($conexion, $listarBar);
-        
+        if(!$resulRestaurante){
+            echo mysqli_error($resulRestaurante);
+        }
+
         // Le pasamos a restaurante.php el nombre del local para que lo identifique.
-        if(isset($capacidad) == NULL){
+        
             while($restaurante = mysqli_fetch_row($resulRestaurante)){
                 $Nombre = $restaurante[0];
-                $Foto = $restaurante[7];
+                $Foto = $restaurante[2];
                 echo "<div style='padding-left:3%;margin-left:10%;margin-right:10%;border:5px solid black;border-radius:10%;width:70%;height:320px;background-color: #3c8dbc'>";
-                echo "<a style='color:white' href = 'restaurante.php?nombre=$Nombre'>".$restaurante[0]."<br/>Valoración: ".$restaurante[1]."<img style='float:left;width:500px;height:auto' src='$Foto'/></a>";
+                echo "<a style='color:white' href = 'restaurante.php?nombre=$Nombre'>".$restaurante[0]."<br/>Valoración: ".$restaurante[1];
                 echo "<div style='position:relative;margin-left:45%;margin-top:-35px;width:auto height:auto'>";
-                echo "<a src='https://media-cdn.tripadvisor.com/media/photo-s/0c/67/fb/3a/pulpeira-de-melide.jpg'><img src='https://media-cdn.tripadvisor.com/media/photo-s/0c/67/fb/3a/pulpeira-de-melide.jpg' width='400px' height='200px'/></a>";
+                echo "<a href='$Foto'><img src='$Foto' width='400px' height='200px'/></a>";
                 echo "</div>";
                 echo "</div><br/>";
                 
             }
-        }
         
 
         // Mostrar los bares solo si no le pasamos el tipo de restaurante o si le pasamos la capacidad de bar
         // Le pasamos a restaurante.php el nombre del local para que lo identifique.
-        if(isset($tipo) == NULL){
+        if(empty($tipo)){
             while($bar = mysqli_fetch_row($resulBar)){
                 $Nombre = $bar[0];
                 echo "<div style='padding-left:3%;margin-left:10%;margin-right:10%;border:5px solid black;border-radius:10%;width:70%;height:320px;background-color: #3c8dbc'>";
-                echo "<a style='color:white' href = 'restaurante.php?nombre=$Nombre'>".$bar[0]."<br/>Valoración: ".$bar[1]."<img style='float:left;width:500px;height:auto' src='$Foto'/></a>";
+                echo "<a style='color:white' href = 'bar.php?nombre=$Nombre'>".$bar[0]."<br/>Valoración: ".$bar[1]."<img style='float:left;width:500px;height:auto' src='$Foto'/></a>";
                 echo "<div style='position:relative;margin-left:45%;margin-top:-35px;width:auto height:auto'>";
                 echo "<a src='https://media-cdn.tripadvisor.com/media/photo-s/0c/67/fb/3a/pulpeira-de-melide.jpg'><img src='https://media-cdn.tripadvisor.com/media/photo-s/0c/67/fb/3a/pulpeira-de-melide.jpg' width='400px' height='200px'/></a>";
                 echo "</div>";

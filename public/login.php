@@ -1,10 +1,24 @@
 <!DOCTYPE html>
 <?php 
     include "conexionBD.php";
-    error_reporting(0);
+    
+    session_start();
+    if(isset($_SESSION['usuario'])){
+      header("Location: perfil.php");
+    }
 
-    $alias = $_GET['alias'];
-    $clave = $_GET['clave'];
+    if(isset($_POST['alias']) AND isset($_POST['clave'])){
+      $alias = $_POST['alias'];
+      $clave = $_POST['clave'];
+    
+      if(identifica($conexion,$alias,$clave)){
+        
+        $_SESSION["usuario"]=$alias;
+        header("Location: perfil.php");
+      }
+      else
+        echo "<span style='font-size:20px;color:red;font-weight:bold' class='error'>ERROR. Este usuario no existe.</span>";
+  }
 ?>
 <html>
   <head>
@@ -121,7 +135,7 @@
 	                  	<div class="col-md-12">
                               <h1>INICIAR SESION</h1>
                             <div style="margin-top:100px;margin-left:35%;width:auto;height:auto">
-                                <form action="" method="GET">
+                                <form action="" method="POST">
                                     <fieldset width="200px" height="auto">
                                         <legend>Vete a tu Pertil</legend>
                                         <label for="User"><h3>Usuario:</h3></label><input type="text" id="User" name="alias" placeholder="Tu Alias"><br/>
@@ -129,14 +143,7 @@
                                     </fieldset>
                                     <button type='submit'>Iniciar Sesión</a></button>
                                 </form>
-                                <?php
-                                if(identifica($conexion,$alias,$clave)){
-                                  echo "<span style='font-size:20px;color:darkgreen;font-weight:bold' class='mensaje'>Bienvenido ".$alias." </span";
-                                  echo "<button type='submit'><a href='perfil.php?alias=$alias'>Ir Mi Perfil</a></button>";
-                                }
-                                else
-                                  echo "<span style='font-size:20px;color:red;font-weight:bold' class='error'>ERROR. Este usuario no existe.</span>";
-                                ?>
+                       
                                 </div>
                             </div>
                </div>     

@@ -14,27 +14,28 @@ button:hover{
 
 #Filtros{
     width:80%;
-    margin-top:80px;
+    margin-top:150px;
+    margin-left:3%;
 }
 #FiltroZona{
     float:left;
-    margin-left:1%;
-    margin-top:-40px;
+    margin-left:0%;
+    margin-top:0px;
 }
 #FiltroRestaurante{
     float:left;
     margin-left:3%;
-    margin-top:-40px;
+    margin-top:0px;
 }
 #FiltroBar{
     float:left;
     margin-left:3%;
-    margin-top:-40px;
+    margin-top:0px;
 }
 #FiltroEdad{
     float:right;
     margin-right:1%;
-    margin-top:-40px;
+    margin-top:0px;
 }
 
 h1,h2,h3,h4,h5{

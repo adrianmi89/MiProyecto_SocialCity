@@ -2,15 +2,18 @@
 <?php 
     include "conexionBD.php";
 
-    $alias = $_GET['alias'];
+    session_start();
+    if(!isset($_SESSION['usuario'])){
+      header("Location: login.php");
+      die();
+    }
+    $alias = $_SESSION["usuario"];
+    if(isset($_POST['cerrarSesion'])){
+      unset($_SESSION);
+      session_destroy();
+      header("Location: login.php");
+    }
 
-    /*$nombre = $_POST['Nombre'];
-    $sexo = $_POST['Sexo'];
-    $edad = $_POST['Edad'];
-    $estadoCivil = $_POST['EstadoCivil'];
-    $ramaProfesional = $_POST['RamaProfesional'];
-    $intereses = $_POST['Intereses'];
-    */
     // Actualizar Perfil
     if(!empty($_POST['Nombre'])){
       $nombre = $_POST['Nombre'];
@@ -101,12 +104,10 @@
                   <li class="user-header">
                     
                     <p>
-                      <button style="border:3px solid white;radius:30%;width:90%"><a style="color:white" href="login.php">Cerrar Sesión</a></button>
-                      
-                      <form action="" method="POST">
-                        <input name="borrar" value="borrar" type="hidden"/>
-                        <button style="border:3px solid white;radius:30%;width:90%" type="submit"><a style="color:white">Borrar Cuenta</a></button>
-                      </form>
+                    <form action="" method="POST">
+                      <button type="submit" name="cerrarSesion" style="border:3px solid white;radius:30%;width:90%">>Cerrar Sesión</button>
+                      <button style="border:3px solid white;radius:30%;width:90%" type="submit" name="borrar">Borrar Cuenta</button>
+                    </form>
                       
                  </p>
                   </li>
