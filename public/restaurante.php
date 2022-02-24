@@ -1,3 +1,22 @@
+<?php
+    include 'conexionBD.php';
+
+    session_start();
+    if(isset($_SESSION['usuario'])){
+     $alias = $_SESSION['usuario'];
+    }
+
+    if(isset($_POST['cerrarSesion'])){
+      unset($_SESSION);
+      session_destroy();
+      header("Location: login.php");
+    }
+
+    if(isset($_POST['favorito'])){
+      $nombre = $_GET['nombre'];
+      addFavorito($alias,$nombre);
+    }
+  ?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -47,24 +66,26 @@
               <!-- User Account: style can be found in dropdown.less -->
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <small class="bg-red"></small>
-                  <span class="hidden-xs"></span>
+                  <span class="hidden-xs"><?php echo "<span style='color:white;font-size:28px'>".$alias."</span>" ?></span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
                     
                     <p>
+                    <form action="" method="POST">
+                      <button type="submit" name="cerrarSesion" style="border:3px solid white;radius:30%;width:90%">>Cerrar Sesión</button>
+                      <button style="border:3px solid white;radius:30%;width:90%" type="submit" name="borrar">Borrar Cuenta</button>
+                    </form>
                       
-                      <small></small>
-                    </p>
+                 </p>
                   </li>
                   
                   <!-- Menu Footer-->
                   <li class="user-footer">
                     
                     <div class="pull-right">
-                      <a href="#" class="btn btn-default btn-flat">Cerrar</a>
+                     
                     </div>
                   </li>
                 </ul>
@@ -72,6 +93,7 @@
               
             </ul>
           </div>
+
 
         </nav>
       </header>
@@ -150,7 +172,6 @@
                   <div style="margin-top:50px;margin-left:5%;width:auto;height:auto;">  
                     <!--DATOS DEL RESTAURANTE ELEGIDO-->
                     <?php
-                    include 'conexionBD.php';
                     // Le pasamos el nombre del local actual a través del enlace de lista de locales
                     $localActual = $_GET['nombre'];
                     $verDatos = "SELECT * FROM restaurante WHERE Nombre = '$localActual'";
@@ -164,6 +185,9 @@
                       $Puntuacion = $restaurante[2];
                       $Carta = $restaurante[3];
                       $Horario = $restaurante[4];
+                      $CLIENTES_HABITUALES_ID1 = $restaurante[5];
+                      $DIRECCION_NombreLocal = $restaurante[6];
+                      $Foto = $restaurante[7];
                     }
                     while($direccion = mysqli_fetch_row($resulDatosDireccion)){
                       $NombreLocal = $direccion[0];
@@ -174,9 +198,10 @@
                     // Vamos a separar el horario en subcadenas para que se visualize mejor
                     //$HorarioDia = explode(": ",$Horario);
                     ?>
-                  <div style='padding-left:3%;margin-left:5%;margin-right:5%;border:5px solid black;border-radius:10%;width:90%;height:180px;background-color: #3c8dbc;color:white;font-size:36px'>
+                  <div style='padding-left:3%;margin-left:5%;margin-right:5%;border:5px solid black;border-radius:0%;width:90%;height:180px;background-color: #3c8dbc;color:white;font-size:36px'>
                       <h1 style="font-size:42px"><?php echo $Nombre ?></h1>
-                      <form>
+                      <form action= "" method= "POST">
+                      <button style="position:relative;float:right;margin-top:10px;margin-right:3%;background-color:white;color:black;width:auto;font-weight:bold;font-size:18px" type="submit" name="favorito">Añadir a Favoritos</button>
                           <p class="clasificacion">
                             <input style="display:none !important" id="radio1" type="radio" name="estrellas" value="5"><!--
                             --><label for="radio1">★</label><!--
@@ -189,11 +214,11 @@
                             --><input style="display:none !important" id="radio5" type="radio" name="estrellas" value="1"><!--
                             --><label for="radio5">★</label>
                           </p>
-                      </form>
+                        </form>
                   </div>
                   <div style='position:absolute;float:right;margin-left:45%;margin-top:50px;width:auto height:auto'>
-                      <a src='https://media-cdn.tripadvisor.com/media/photo-s/0c/67/fb/3a/pulpeira-de-melide.jpg'>
-                    <img src='https://media-cdn.tripadvisor.com/media/photo-s/0c/67/fb/3a/pulpeira-de-melide.jpg'/></a>
+                      <a href='<?php echo $Foto ?>'>
+                    <img src='<?php echo $Foto ?>'/></a>
                     </div>
                     <div style="margin-top:50px;margin-left:2%;width:30%;height:auto;">
                         <h3><b>Valoración: </b><span style="font-weight:normal"><?php echo $Puntuacion." estrellas" ?></span></h3>

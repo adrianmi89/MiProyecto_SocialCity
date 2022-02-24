@@ -7,6 +7,7 @@
       header("Location: login.php");
       die();
     }
+    
     $alias = $_SESSION["usuario"];
     if(isset($_POST['cerrarSesion'])){
       unset($_SESSION);

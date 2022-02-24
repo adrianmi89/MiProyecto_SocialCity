@@ -2,6 +2,17 @@
 <?php 
     include "conexionBD.php";
 
+    session_start();
+    if(isset($_SESSION['usuario'])){
+      $alias = $_SESSION['usuario'];
+    }
+
+    if(isset($_POST['cerrarSesion'])){
+      unset($_SESSION);
+      session_destroy();
+      header("Location: login.php");
+    }
+
     $zona = $tipo = $capacidad = NULL;
 
     if(isset($_POST['zona'])){
@@ -62,31 +73,32 @@
           <b>A Coruña, una ciudad que conecta. ¿Aún no sabes que hacer? </b></span>
           <!-- Navbar Right Menu -->
           <div class="navbar-custom-menu">
-
             <ul class="nav navbar-nav">
               <!-- Messages: style can be found in dropdown.less-->
               
               <!-- User Account: style can be found in dropdown.less -->
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <small class="bg-red"></small>
-                  <span class="hidden-xs"></span>
+                  <span class="hidden-xs"><?php echo "<span style='color:white;font-size:28px'>".$alias."</span>" ?></span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
                     
                     <p>
+                    <form action="" method="POST">
+                      <button type="submit" name="cerrarSesion" style="border:3px solid white;radius:30%;width:90%">>Cerrar Sesión</button>
+                      <button style="border:3px solid white;radius:30%;width:90%" type="submit" name="borrar">Borrar Cuenta</button>
+                    </form>
                       
-                      <small></small>
-                    </p>
+                 </p>
                   </li>
                   
                   <!-- Menu Footer-->
                   <li class="user-footer">
                     
                     <div class="pull-right">
-                      <a href="#" class="btn btn-default btn-flat">Cerrar</a>
+                     
                     </div>
                   </li>
                 </ul>
@@ -94,6 +106,7 @@
               
             </ul>
           </div>
+
 
         </nav>
       </header>
@@ -272,7 +285,7 @@
                             </div>
                             <div id="Locales" style="margin-top:100px;width:auto;height:auto;font-size:32px;font-weight:bold;">
                                 <?php 
-                                listaLocales($zona,$tipo,$capacidad)
+                                listaLocales($zona,$tipo,$capacidad);
                                 ?>
                             
                </div>     

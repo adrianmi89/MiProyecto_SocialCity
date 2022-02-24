@@ -1,3 +1,21 @@
+<?php
+    include 'conexionBD.php';
+
+    session_start();
+    if(isset($_SESSION['usuario'])){
+       $alias = $_SESSION['usuario'];
+    }
+
+    if(isset($_POST['cerrarSesion'])){
+      unset($_SESSION);
+      session_destroy();
+      header("Location: login.php");
+    }
+    if(isset($_POST['favorito'])){
+      $nombre = $_GET['nombre'];
+      addFavorito($alias,$nombre);
+    }
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -47,24 +65,26 @@
               <!-- User Account: style can be found in dropdown.less -->
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <small class="bg-red"></small>
-                  <span class="hidden-xs"></span>
+                  <span class="hidden-xs"><?php echo "<span style='color:white;font-size:28px'>".$alias."</span>" ?></span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
                     
                     <p>
-                   
-                      <small></small>
-                    </p>
+                    <form action="" method="POST">
+                      <button type="submit" name="cerrarSesion" style="border:3px solid white;radius:30%;width:90%">>Cerrar Sesión</button>
+                      <button style="border:3px solid white;radius:30%;width:90%" type="submit" name="borrar">Borrar Cuenta</button>
+                    </form>
+                      
+                 </p>
                   </li>
                   
                   <!-- Menu Footer-->
                   <li class="user-footer">
                     
                     <div class="pull-right">
-                      <a href="#" class="btn btn-default btn-flat">Cerrar</a>
+                     
                     </div>
                   </li>
                 </ul>
@@ -72,6 +92,7 @@
               
             </ul>
           </div>
+
 
         </nav>
       </header>
@@ -150,7 +171,6 @@
                     <div style="margin-top:50px;margin-left:5%;width:auto;height:auto">  
                     <!--DATOS DEL BAR ELEGIDO-->
                     <?php
-                    include 'conexionBD.php';
                     // Le pasamos el nombre del local actual a través del enlace de lista de locales
                     $localActual = $_GET['nombre'];
                     $verDatos = "SELECT * FROM bar WHERE Nombre = '$localActual'";
@@ -177,6 +197,7 @@
                     <div style='padding-left:3%;margin-left:5%;margin-right:5%;border:5px solid black;border-radius:10%;width:90%;height:180px;background-color: #3c8dbc;color:white;font-size:36px'>
                       <h1 style="font-size:42px"><?php echo $Nombre ?></h1>
                       <form>
+                      <button style="position:relative;float:right;margin-top:10px;margin-right:75%;background-color:white;color:black;width:auto;font-weight:bold;font-size:18px" type="submit" name="favorito">Añadir a Favoritos</button>
                           <p class="clasificacion">
                             <input style="display:none !important" id="radio1" type="radio" name="estrellas" value="5"><!--
                             --><label for="radio1">★</label><!--
@@ -189,6 +210,7 @@
                             --><input style="display:none !important" id="radio5" type="radio" name="estrellas" value="1"><!--
                             --><label for="radio5">★</label>
                           </p>
+                          <button type="submit" name="favorito">Añadir a Favoritos</button>
                       </form>
                   </div>
                     <div style='position:absolute;float:right;margin-left:45%;margin-top:50px;width:auto height:auto'>

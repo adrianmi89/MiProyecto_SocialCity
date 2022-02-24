@@ -99,8 +99,10 @@
             }
     }
     // Función para añadir un local a la lista Favoritos del usuario
-    function addFavorito($nombre){
-
+    function addFavorito($alias,$nombre){
+        global $conexion;
+        $localFavorito = "INSERT INTO favoritos(Alias,Nombre) VALUES('$alias','$nombre')";
+        $resulRegistro = mysqli_query($conexion, $localFavorito);
     }
     // Función para crear una nueva alarma y añadirla a la lista de alarmas del usuario
     function addAlarma($nAlarma,$nombre,$fecha,$hora,$descripcion){
