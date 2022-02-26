@@ -13,7 +13,7 @@
       header("Location: login.php");
     }
 
-    $zona = $tipo = $capacidad = NULL;
+    $alias = $zona = $tipo = $capacidad = NULL;
 
     if(isset($_POST['zona'])){
       $zona = $_POST['zona'];
@@ -79,7 +79,10 @@
               <!-- User Account: style can be found in dropdown.less -->
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <span class="hidden-xs"><?php echo "<span style='color:white;font-size:28px'>".$alias."</span>" ?></span>
+                  <span class="hidden-xs">
+                   <?php 
+                    echo "<span style='color:white;font-size:28px'>".$alias."</span>";
+                    ?>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
@@ -242,7 +245,7 @@
                                     </form>    
                                   </div>
                                   <div id="FiltroBar">
-                                    <span style="font-size:28px;">Tamaño del Bar</span>
+                                    <span style="font-size:28px;">Tamaño del Local</span>
                                     <form action="" method="POST">
                                         <select value="capacidad" name="capacidad">
                                             <option>--Capacidad Max--</option>

@@ -15,6 +15,12 @@
       header("Location: login.php");
     }
 
+    $nombre;
+    if(isset($_POST['borraFavorito'])){
+      $borraFavorito = "DELETE FROM favoritos WHERE Alias = '$alias' AND Nombre = '$nombre'";
+      $resulBorraFavorito = mysqli_query($conexion, $borraFavorito);
+      echo $resulBorraFavorito;
+    }
     // Actualizar Perfil
     if(!empty($_POST['Nombre'])){
       $nombre = $_POST['Nombre'];
@@ -106,7 +112,7 @@
                     
                     <p>
                     <form action="" method="POST">
-                      <button type="submit" name="cerrarSesion" style="border:3px solid white;radius:30%;width:90%">>Cerrar Sesión</button>
+                      <button type="submit" name="cerrarSesion" style="border:3px solid white;radius:30%;width:90%">Cerrar Sesión</button>
                       <button style="border:3px solid white;radius:30%;width:90%" type="submit" name="borrar">Borrar Cuenta</button>
                     </form>
                       
@@ -190,13 +196,13 @@
         <!-- Main content -->
         <section class="content">
           
-          <div class="row">
+          <div class="row" style="margin-left:0px !important">
             <div class="col-md-12">
               <div class="box">
                 <!-- /.box-header -->
                 <div class="box-body">
                   	<div class="row">
-	                  	<div class="col-md-12">
+	                  	<div class="col-md-12" style="margin:2%">
 		                          <!--Contenido dinámico con el tag yield-->
                               <!--@yield('Contenido')-->
                               <!--Fin Contenido-->
@@ -217,7 +223,7 @@
                                 }
                             ?>
                           
-                            <div id="DatosPersona">
+                            <div id="DatosPersona" style="padding-left:2%">
                                 <h2>Información básica</h2>
                                 <form action="" method="POST" width="200px" height="auto">
                                     <label for="Nombre">Nombre: </label><input name="Nombre" value="<?php echo $Nombre ?>"><br/>
@@ -229,14 +235,29 @@
                                     <button type="submit">Editar</button>
                                 </form>
                             </div>
-                            <div id="Favoritos">
+                            <div id="Favoritos" style="padding-left:2%">
                                 
                                 <h2>Mis Favoritos</h2>
                                 <div>
-                                    <b>Leer locales Favoritos de la base de datos con enlace al mismo</b>
+                                <?php
+                                  $listaFavoritos = "SELECT Nombre FROM favoritos WHERE Alias = '$alias'";
+
+                                  $resulFavoritos = mysqli_query($conexion, $listaFavoritos);
+
+                                  while($favoritos = mysqli_fetch_row($resulFavoritos)){
+                                    $nombre = $favoritos[0];
+                                
+                                    echo "<div style='padding:10px;'>";
+                                    echo "<a style='color:black;font-weight:bold;font-size:18px' href = 'restaurante.php?nombre=$nombre'>".$nombre."</a>";
+                                    echo "<form action='' method='POST'>";
+                                    echo "<button style='background-color:red;margin-top:-10px;margin-left:300px;width:200px' name='borraFavorito'>Eliminar de Favoritos</button>";
+                                    echo "</form>";
+                                    echo "</div>";
+                                }
+                                ?>
                                 </div>
                             </div>
-                            <div id="Alarmas">
+                            <div id="Alarmas" style="padding-left:2%">
                                 <h2>Mis Alarmas</h2>
                                 <div>
                                     <b>Leer alarma de la base de datos</b><button>Eliminar</button>

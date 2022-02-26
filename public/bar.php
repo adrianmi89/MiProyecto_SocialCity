@@ -196,8 +196,8 @@
                     ?>
                     <div style='padding-left:3%;margin-left:5%;margin-right:5%;border:5px solid black;border-radius:10%;width:90%;height:180px;background-color: #3c8dbc;color:white;font-size:36px'>
                       <h1 style="font-size:42px"><?php echo $Nombre ?></h1>
-                      <form>
-                      <button style="position:relative;float:right;margin-top:10px;margin-right:75%;background-color:white;color:black;width:auto;font-weight:bold;font-size:18px" type="submit" name="favorito">Añadir a Favoritos</button>
+                      <form action= "" method= "POST">
+                      <button style="position:relative;float:right;margin-top:10px;margin-right:3%;background-color:white;color:black;width:auto;font-weight:bold;font-size:18px" type="submit" name="favorito">Añadir a Favoritos</button>
                           <p class="clasificacion">
                             <input style="display:none !important" id="radio1" type="radio" name="estrellas" value="5"><!--
                             --><label for="radio1">★</label><!--
@@ -210,7 +210,6 @@
                             --><input style="display:none !important" id="radio5" type="radio" name="estrellas" value="1"><!--
                             --><label for="radio5">★</label>
                           </p>
-                          <button type="submit" name="favorito">Añadir a Favoritos</button>
                       </form>
                   </div>
                     <div style='position:absolute;float:right;margin-left:45%;margin-top:50px;width:auto height:auto'>
