@@ -15,12 +15,6 @@
       header("Location: login.php");
     }
 
-    $nombre;
-    if(isset($_POST['borraFavorito'])){
-      $borraFavorito = "DELETE FROM favoritos WHERE Alias = '$alias' AND Nombre = '$nombre'";
-      $resulBorraFavorito = mysqli_query($conexion, $borraFavorito);
-      echo $resulBorraFavorito;
-    }
     // Actualizar Perfil
     if(!empty($_POST['Nombre'])){
       $nombre = $_POST['Nombre'];
@@ -249,9 +243,6 @@
                                 
                                     echo "<div style='padding:10px;'>";
                                     echo "<a style='color:black;font-weight:bold;font-size:18px' href = 'restaurante.php?nombre=$nombre'>".$nombre."</a>";
-                                    echo "<form action='' method='POST'>";
-                                    echo "<button style='background-color:red;margin-top:-10px;margin-left:300px;width:200px' name='borraFavorito'>Eliminar de Favoritos</button>";
-                                    echo "</form>";
                                     echo "</div>";
                                 }
                                 ?>

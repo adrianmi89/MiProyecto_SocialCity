@@ -104,6 +104,11 @@
         $localFavorito = "INSERT INTO favoritos(Alias,Nombre) VALUES('$alias','$nombre')";
         $resulRegistro = mysqli_query($conexion, $localFavorito);
     }
+    function borraFavorito($alias,$nombre){
+        global $conexion;
+        $borraFavorito = "DELETE FROM favoritos WHERE Alias = '$alias' AND Nombre = '$nombre'";
+        $resulBorraFavorito = mysqli_query($conexion, $borraFavorito);
+    }
     // Función para crear una nueva alarma y añadirla a la lista de alarmas del usuario
     function addAlarma($nAlarma,$nombre,$fecha,$hora,$descripcion){
 

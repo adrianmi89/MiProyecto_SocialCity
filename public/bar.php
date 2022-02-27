@@ -1,6 +1,8 @@
 <?php
     include 'conexionBD.php';
 
+    $alias = NULL;
+
     session_start();
     if(isset($_SESSION['usuario'])){
        $alias = $_SESSION['usuario'];
@@ -11,9 +13,17 @@
       session_destroy();
       header("Location: login.php");
     }
+    $favorito;
     if(isset($_POST['favorito'])){
       $nombre = $_GET['nombre'];
       addFavorito($alias,$nombre);
+      $favorito = true;
+    }
+
+    if(isset($_POST['borraFavorito'])){
+      $nombre = $_GET['nombre'];
+      borraFavorito($alias,$nombre);
+      $favorito = false;
     }
 ?>
 <!DOCTYPE html>
@@ -197,7 +207,19 @@
                     <div style='padding-left:3%;margin-left:5%;margin-right:5%;border:5px solid black;border-radius:10%;width:90%;height:180px;background-color: #3c8dbc;color:white;font-size:36px'>
                       <h1 style="font-size:42px"><?php echo $Nombre ?></h1>
                       <form action= "" method= "POST">
-                      <button style="position:relative;float:right;margin-top:10px;margin-right:3%;background-color:white;color:black;width:auto;font-weight:bold;font-size:18px" type="submit" name="favorito">Añadir a Favoritos</button>
+                      <?php
+
+                          $localFavorito = "SELECT Alias,Nombre FROM favoritos WHERE Alias = '$alias' AND Nombre = '$Nombre'";
+                          $buscaFavorito = mysqli_query($conexion, $localFavorito);
+                          if($favoritos = mysqli_num_rows($buscaFavorito)){
+                            echo "<button style='position:relative;float:right;margin-top:10px;margin-right:3%;background-color:red !important;color:white !important;width:auto;font-weight:bold;font-size:18px' type='submit' name='borraFavorito'>Eliminar de Favoritos</button>";
+                            $favorito = true;
+                          }
+                          else{
+                            echo "<button style='position:relative;float:right;margin-top:10px;margin-right:3%;background-color:white;color:black;width:auto;font-weight:bold;font-size:18px' type='submit' name='favorito'>Añadir a Favoritos</button>";
+                            $favorito = false;
+                          }
+                        ?>
                           <p class="clasificacion">
                             <input style="display:none !important" id="radio1" type="radio" name="estrellas" value="5"><!--
                             --><label for="radio1">★</label><!--
