@@ -84,7 +84,7 @@
                     
                     <p>
                     <form action="" method="POST">
-                      <button type="submit" name="cerrarSesion" style="border:3px solid white;radius:30%;width:90%">>Cerrar Sesión</button>
+                      <button type="submit" name="cerrarSesion" style="border:3px solid white;radius:30%;width:90%">Cerrar Sesión</button>
                       <button style="border:3px solid white;radius:30%;width:90%" type="submit" name="borrar">Borrar Cuenta</button>
                     </form>
                       
@@ -127,35 +127,48 @@
                 <li><a href="index.php" style="font-size:20px;font-family: 'Redressed', cursive;"><i class="fa fa-circle-o"></i> Inicio</a></li>
               </ul>
             </li>
-            <li class="treeview">
-              <a href="#">
-                <i class="fa fa-laptop"></i>
-                <span style="font-size:27px;font-family: 'Redressed', cursive;">Acerca de...</span>
-                <i class="fa fa-angle-left pull-right"></i>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="socialcity.html" style="font-size:20px;font-family: 'Redressed', cursive;"><i class="fa fa-circle-o"></i>Socialcity</a></li>
-              </ul>
-            </li>
-            <li class="treeview">
-              <a href="#">
-                <i class="fa fa-folder"></i> <span style="font-size:27px;font-family: 'Redressed', cursive;">Iniciar Sesión</span>
-                <i class="fa fa-angle-left pull-right"></i>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="login.php" style="font-size:20px;font-family: 'Redressed', cursive;"><i class="fa fa-circle-o"></i>Login</a></li>
-                
-              </ul>
-            </li>  
-            <li class="treeview">
-              <a href="#">
-                <i class="fa fa-folder"></i> <span style="font-size:27px;font-family: 'Redressed', cursive;">Registrarse</span>
-                <i class="fa fa-angle-left pull-right"></i>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="registro.php" style="font-size:20px;font-family: 'Redressed', cursive;"><i class="fa fa-circle-o"> Usuario Nuevo</i></a></li>
-              </ul>
-            </li>           
+            <?php
+              if(isset($_SESSION['usuario'])){
+                echo "<li class='treeview'>";
+                  echo "<a href='#'>";
+                  echo "<i class='fa fa-folder'></i> <span style='font-size:27px;font-family: 'Redressed', cursive'>Mi Perfil</span>";
+                  echo "<i class='fa fa-angle-left pull-right'></i>";
+                  echo "</a>";
+                  echo "<ul class='treeview-menu'>";
+                    echo "<li><a href='perfil.php' style='font-size:20px;font-family: 'Redressed', cursive;'><i class='fa fa-circle-o'> $alias</i></a></li>";
+                echo "</ul>";
+                echo "</li>";           
+              }
+              else{
+                echo "<li class='treeview'>";
+                  echo "<a href='#'>";
+                  echo "<i class='fa fa-folder'></i> <span style='font-size:27px;font-family: 'Redressed', cursive'>Acerca de...</span>";
+                  echo "<i class='fa fa-angle-left pull-right'></i>";
+                  echo "</a>";
+                  echo "<ul class='treeview-menu'>";
+                    echo "<li><a href='socialcity.html' style='font-size:20px;font-family: 'Redressed', cursive;'><i class='fa fa-circle-o'> Socialcity/i></a></li>";
+                echo "</ul>";
+                echo "</li>";
+                echo "<li class='treeview'>";
+                  echo "<a href='#'>";
+                  echo "<i class='fa fa-folder'></i> <span style='font-size:27px;font-family: 'Redressed', cursive'>Iniciar Sesión</span>";
+                  echo "<i class='fa fa-angle-left pull-right'></i>";
+                  echo "</a>";
+                  echo "<ul class='treeview-menu'>";
+                    echo "<li><a href='login.php' style='font-size:20px;font-family: 'Redressed', cursive;'><i class='fa fa-circle-o'> Login/i></a></li>";
+                echo "</ul>";
+                echo "</li>";           
+                echo "<li class='treeview'>";
+                echo "<a href='#'>";
+                echo "<i class='fa fa-folder'></i> <span style='font-size:27px;font-family: 'Redressed', cursive'>Registrarse</span>";
+                echo "<i class='fa fa-angle-left pull-right'></i>";
+                echo "</a>";
+                echo "<ul class='treeview-menu'>";
+                  echo "<li><a href='registro.php' style='font-size:20px;font-family: 'Redressed', cursive;'><i class='fa fa-circle-o'> Nuevo Usuario/i></a></li>";
+                echo "</ul>";
+                echo "</li>";    
+                }
+              ?>     
           </ul>
         </section>
         <!-- /.sidebar -->
@@ -225,23 +238,75 @@
                           }
                         ?>
                             <p class="clasificacion">
-                              <input style="display:none !important" id="radio1" type="radio" name="estrellas" value="5"><!--
-                              --><label for="radio1">★</label><!--
-                              --><input style="display:none !important" id="radio2" type="radio" name="estrellas" value="4"><!--
-                              --><label for="radio2">★</label><!--
-                              --><input style="display:none !important" id="radio3" type="radio" name="estrellas" value="3"><!--
-                              --><label for="radio3">★</label><!--
-                              --><input style="display:none !important" id="radio4" type="radio" name="estrellas" value="2"><!--
-                              --><label for="radio4">★</label><!--
-                              --><input style="display:none !important" id="radio5" type="radio" name="estrellas" value="1"><!--
-                              --><label for="radio5">★</label>
+                              <?php
+                              if($Puntuacion >= 1 && $Puntuacion < 2){
+                                echo "<input style='display:none !important' id='radio1' type='radio' name='estrellas' value='5'>";
+                                echo "<label for='radio1' style='color:orange !important'>★</label>";
+                                echo "<input style='display:none !important' id='radio2' type='radio' name='estrellas' value='4'>";
+                                echo "<label for='radio2'>★</label>";
+                                echo "<input style='display:none !important' id='radio3' type='radio' name='estrellas' value='3'>";
+                                echo "<label for='radio3'>★</label>";
+                                echo "<input style='display:none !important' id='radio4' type='radio' name='estrellas' value='2'>";
+                                echo "<label for='radio4'>★</label>";
+                                echo "<input style='display:none !important' id='radio5' type='radio' name='estrellas' value='1'>";
+                                echo "<label for='radio5'>★</label>";
+                              }
+                              if($Puntuacion >= 2 && $Puntuacion < 3){
+                                echo "<input style='display:none !important' id='radio1' type='radio' name='estrellas' value='5'>";
+                                echo "<label for='radio1' style='color:orange !important'>★</label>";
+                                echo "<input style='display:none !important' id='radio2' type='radio' name='estrellas' value='4'>";
+                                echo "<label for='radio2' style='color:orange !important'>★</label>";
+                                echo "<input style='display:none !important' id='radio3' type='radio' name='estrellas' value='3'>";
+                                echo "<label for='radio3'>★</label>";
+                                echo "<input style='display:none !important' id='radio4' type='radio' name='estrellas' value='2'>";
+                                echo "<label for='radio4'>★</label>";
+                                echo "<input style='display:none !important' id='radio5' type='radio' name='estrellas' value='1'>";
+                                echo "<label for='radio5'>★</label>";
+                              }
+                              if($Puntuacion >= 3 && $Puntuacion < 4){
+                                echo "<input style='display:none !important' id='radio1' type='radio' name='estrellas' value='5'>";
+                                echo "<label for='radio1' style='color:orange !important'>★</label>";
+                                echo "<input style='display:none !important' id='radio2' type='radio' name='estrellas' value='4'>";
+                                echo "<label for='radio2' style='color:orange !important'>★</label>";
+                                echo "<input style='display:none !important' id='radio3' type='radio' name='estrellas' value='3'>";
+                                echo "<label for='radio3' style='color:orange !important'>★</label>";
+                                echo "<input style='display:none !important' id='radio4' type='radio' name='estrellas' value='2'>";
+                                echo "<label for='radio4'>★</label>";
+                                echo "<input style='display:none !important' id='radio5' type='radio' name='estrellas' value='1'>";
+                                echo "<label for='radio5'>★</label>";
+                              }
+                              if($Puntuacion >= 4 && $Puntuacion < 5){
+                                echo "<input style='display:none !important' id='radio1' type='radio' name='estrellas' value='5'>";
+                                echo "<label for='radio1' style='color:orange !important'>★</label>";
+                                echo "<input style='display:none !important' id='radio2' type='radio' name='estrellas' value='4'>";
+                                echo "<label for='radio2' style='color:orange !important'>★</label>";
+                                echo "<input style='display:none !important' id='radio3' type='radio' name='estrellas' value='3'>";
+                                echo "<label for='radio3' style='color:orange !important'>★</label>";
+                                echo "<input style='display:none !important' id='radio4' type='radio' name='estrellas' value='2'>";
+                                echo "<label for='radio4' style='color:orange !important'>★</label>";
+                                echo "<input style='display:none !important' id='radio5' type='radio' name='estrellas' value='1'>";
+                                echo "<label for='radio5'>★</label>";
+                              }
+                              if($Puntuacion == 5){
+                                echo "<input style='display:none !important' id='radio1' type='radio' name='estrellas' value='5'>";
+                                echo "<label for='radio1' style='color:orange !important'>★</label>";
+                                echo "<input style='display:none !important' id='radio2' type='radio' name='estrellas' value='4'>";
+                                echo "<label for='radio2' style='color:orange !important'>★</label>";
+                                echo "<input style='display:none !important' id='radio3' type='radio' name='estrellas' value='3'>";
+                                echo "<label for='radio3' style='color:orange !important'>★</label>";
+                                echo "<input style='display:none !important' id='radio4' type='radio' name='estrellas' value='2'>";
+                                echo "<label for='radio4' style='color:orange !important'>★</label>";
+                                echo "<input style='display:none !important' id='radio5' type='radio' name='estrellas' value='1'>";
+                                echo "<label for='radio5' style='color:orange !important'>★</label>";
+                              }
+                              ?>
                             </p>
                       </form>
                   </div>
-                  <div style='position:absolute;float:right;margin-left:45%;margin-top:50px;width:auto height:auto'>
-                      <a href='<?php echo $Foto ?>'>
-                    <img src='<?php echo $Foto ?>'/></a>
-                    </div>
+                  <div style='position:absolute;float:right;margin-left:42%;margin-top:50px;width:auto height:auto'>
+                    <a href='<?php echo $Foto ?>'>
+                    <img src='<?php echo $Foto ?>' width="800px" height="400px"/></a>
+                  </div>
                     <div style="margin-top:50px;margin-left:2%;width:30%;height:auto;">
                         <h3><b>Valoración: </b><span style="font-weight:normal"><?php echo $Puntuacion." estrellas" ?></span></h3>
                         <h3><b>Capacidad: </b><span style="font-weight:normal"><?php echo $Capacidad." personas" ?></span></h3>

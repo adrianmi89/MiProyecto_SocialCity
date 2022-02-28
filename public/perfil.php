@@ -150,31 +150,11 @@
             </li>
             <li class="treeview">
               <a href="#">
-                <i class="fa fa-laptop"></i>
-                <span style="font-size:27px;font-family: 'Redressed', cursive;">Acerca de...</span>
+                <i class="fa fa-folder"></i> <span style="font-size:27px;font-family: 'Redressed', cursive;">Mi Perfil</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="socialcity.html" style="font-size:20px;font-family: 'Redressed', cursive;"><i class="fa fa-circle-o"></i>Socialcity</a></li>
-              </ul>
-            </li>
-            <li class="treeview">
-              <a href="#">
-                <i class="fa fa-folder"></i> <span style="font-size:27px;font-family: 'Redressed', cursive;">Iniciar Sesión</span>
-                <i class="fa fa-angle-left pull-right"></i>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="login.php" style="font-size:20px;font-family: 'Redressed', cursive;"><i class="fa fa-circle-o"></i>Login</a></li>
-                
-              </ul>
-            </li>  
-            <li class="treeview">
-              <a href="#">
-                <i class="fa fa-folder"></i> <span style="font-size:27px;font-family: 'Redressed', cursive;">Registrarse</span>
-                <i class="fa fa-angle-left pull-right"></i>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="registro.php" style="font-size:20px;font-family: 'Redressed', cursive;"><i class="fa fa-circle-o"> Usuario Nuevo</i></a></li>
+                <li><a href="perfil.php" style="font-size:20px;font-family: 'Redressed', cursive;"><i class="fa fa-circle-o"><?php echo " ".$alias ?></i></a></li>
               </ul>
             </li>           
           </ul>

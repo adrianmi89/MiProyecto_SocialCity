@@ -90,7 +90,7 @@
                     
                     <p>
                     <form action="" method="POST">
-                      <button type="submit" name="cerrarSesion" style="border:3px solid white;radius:30%;width:90%">>Cerrar Sesión</button>
+                      <button type="submit" name="cerrarSesion" style="border:3px solid white;radius:30%;width:90%">Cerrar Sesión</button>
                       <button style="border:3px solid white;radius:30%;width:90%" type="submit" name="borrar">Borrar Cuenta</button>
                     </form>
                       
@@ -133,35 +133,48 @@
                 <li><a href="index.php" style="font-size:20px;font-family: 'Redressed', cursive;"><i class="fa fa-circle-o"></i> Inicio</a></li>
               </ul>
             </li>
-            <li class="treeview">
-              <a href="#">
-                <i class="fa fa-laptop"></i>
-                <span style="font-size:27px;font-family: 'Redressed', cursive;">Acerca de...</span>
-                <i class="fa fa-angle-left pull-right"></i>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="socialcity.html" style="font-size:20px;font-family: 'Redressed', cursive;"><i class="fa fa-circle-o"></i>Socialcity</a></li>
-              </ul>
-            </li>
-            <li class="treeview">
-              <a href="#">
-                <i class="fa fa-folder"></i> <span style="font-size:27px;font-family: 'Redressed', cursive;">Iniciar Sesión</span>
-                <i class="fa fa-angle-left pull-right"></i>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="login.php" style="font-size:20px;font-family: 'Redressed', cursive;"><i class="fa fa-circle-o"></i>Login</a></li>
-                
-              </ul>
-            </li>  
-            <li class="treeview">
-              <a href="#">
-                <i class="fa fa-folder"></i> <span style="font-size:27px;font-family: 'Redressed', cursive;">Registrarse</span>
-                <i class="fa fa-angle-left pull-right"></i>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="registro.php" style="font-size:20px;font-family: 'Redressed', cursive;"><i class="fa fa-circle-o"> Usuario Nuevo</i></a></li>
-              </ul>
-            </li>           
+            <?php
+              if(isset($_SESSION['usuario'])){
+                echo "<li class='treeview'>";
+                  echo "<a href='#'>";
+                  echo "<i class='fa fa-folder'></i> <span style='font-size:27px;font-family: 'Redressed', cursive'>Mi Perfil</span>";
+                  echo "<i class='fa fa-angle-left pull-right'></i>";
+                  echo "</a>";
+                  echo "<ul class='treeview-menu'>";
+                    echo "<li><a href='perfil.php' style='font-size:20px;font-family: 'Redressed', cursive;'><i class='fa fa-circle-o'> $alias</i></a></li>";
+                echo "</ul>";
+                echo "</li>";           
+              }
+              else{
+                echo "<li class='treeview'>";
+                  echo "<a href='#'>";
+                  echo "<i class='fa fa-folder'></i> <span style='font-size:27px;font-family: 'Redressed', cursive'>Acerca de...</span>";
+                  echo "<i class='fa fa-angle-left pull-right'></i>";
+                  echo "</a>";
+                  echo "<ul class='treeview-menu'>";
+                    echo "<li><a href='socialcity.html' style='font-size:20px;font-family: 'Redressed', cursive;'><i class='fa fa-circle-o'> Socialcity/i></a></li>";
+                echo "</ul>";
+                echo "</li>";
+                echo "<li class='treeview'>";
+                  echo "<a href='#'>";
+                  echo "<i class='fa fa-folder'></i> <span style='font-size:27px;font-family: 'Redressed', cursive'>Iniciar Sesión</span>";
+                  echo "<i class='fa fa-angle-left pull-right'></i>";
+                  echo "</a>";
+                  echo "<ul class='treeview-menu'>";
+                    echo "<li><a href='login.php' style='font-size:20px;font-family: 'Redressed', cursive;'><i class='fa fa-circle-o'> Login/i></a></li>";
+                echo "</ul>";
+                echo "</li>";           
+                echo "<li class='treeview'>";
+                echo "<a href='#'>";
+                echo "<i class='fa fa-folder'></i> <span style='font-size:27px;font-family: 'Redressed', cursive'>Registrarse</span>";
+                echo "<i class='fa fa-angle-left pull-right'></i>";
+                echo "</a>";
+                echo "<ul class='treeview-menu'>";
+                  echo "<li><a href='registro.php' style='font-size:20px;font-family: 'Redressed', cursive;'><i class='fa fa-circle-o'> Nuevo Usuario/i></a></li>";
+                echo "</ul>";
+                echo "</li>";    
+                }
+              ?>     
           </ul>
         </section>
         <!-- /.sidebar -->
