@@ -111,8 +111,15 @@
         $resulBorraFavorito = mysqli_query($conexion, $borraFavorito);
     }
     // Función para crear una nueva alarma y añadirla a la lista de alarmas del usuario
-    function addAlarma($nAlarma,$nombre,$fecha,$hora,$descripcion){
-
+    function addAlarma($alias,$nombre,$fecha,$hora,$descripcion){
+        global $conexion;
+        $alarmaLocal = "INSERT INTO alarma(Alias,Nombre,Fecha,Hora,Descripcion) VALUES('$alias','$nombre','$fecha','$hora','$descripcion')";
+        $resulAlarmaLocal = mysqli_query($conexion, $alarmaLocal);
+    }
+    function borraAlarma($alias,$nombre,$fecha){
+        global $conexion;
+        $alarmaLocal = "DELETE FROM alarma WHERE Alias = '$alias' AND Nombre = '$nombre' AND Fecha = '$fecha'";
+        $resulAlarmaLocal = mysqli_query($conexion, $alarmaLocal);
     }
     // Función para añadir un LIKE a un comentario específico
     function meGusta($id){

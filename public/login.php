@@ -14,10 +14,10 @@
       if(identifica($conexion,$alias,$clave)){
         
         $_SESSION["usuario"]=$alias;
+        echo "<h3>Cargando Perfil...</h3>";
+        sleep(2);
         header("Location: perfil.php");
       }
-      else
-        echo "<span style='font-size:20px;color:red;font-weight:bold' class='error'>ERROR. Este usuario no existe.</span>";
   }
 ?>
 <html>
@@ -143,9 +143,15 @@
                                     </fieldset>
                                     <button type='submit'>Iniciar Sesión</a></button>
                                 </form>
-                       
-                                </div>
+                                <?php
+                                if(isset($_POST['alias']) AND isset($_POST['clave']) && !identifica($conexion,$alias,$clave)){
+                                  echo "<h3>Un momento... Verificado credenciales.</h3>";
+                                  sleep(2);
+                                  echo "<span style='font-size:20px;color:red;font-weight:bold' class='error'>ERROR. Este usuario no existe.</span>";
+                                }
+                                ?>
                             </div>
+                      </div>
                </div>     
 						</div>
         </div>

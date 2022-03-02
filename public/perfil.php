@@ -49,6 +49,18 @@
     if(!empty($_POST['borrar'])){
       bajaUsuario($conexion,$alias);
     }
+    if(isset($_POST['alarma'])){
+      $nombre = $_POST['Nombre'];
+      $fecha = $_POST['Fecha'];
+      $hora = $_POST['Hora'];
+      $descripcion = $_POST['Descripcion'];
+      addAlarma($alias,$nombre,$fecha,$hora,$descripcion);
+      }
+    if(isset($_POST['borraAlarma'])){
+      $nombre = $_POST['Nombre'];
+      $fecha = $_POST['Fecha'];
+      borraAlarma($alias,$nombre,$fecha);
+      }
 ?>
 <html>
   <head>
@@ -180,6 +192,16 @@
 		                          <!--Contenido dinámico con el tag yield-->
                               <!--@yield('Contenido')-->
                               <!--Fin Contenido-->
+                            <?php
+                              $estado = false;
+                              if($estado){
+                                echo "Cargando Perfil...";
+                              }
+                              sleep(3);
+                              if(!$estado){
+                                echo "";
+                              }
+                            ?>
                             <h1>Mi Perfil</h1>
                             <?php
                                 $verDatos = "SELECT * FROM perfil WHERE Alias = '$alias'";
@@ -239,11 +261,20 @@
                                     <form action="" method="POST" width="200px" height="auto">
                                         <label for="Nombre">Nombre: </label><input name="Nombre" placeholder="Nombre Local"><br/>
                                         <label for="Fecha">Fecha: </label><input name="Fecha" placeholder="Fecha del aviso"><br/>
-                                        <label for="Hora">Edad: </label><input name="Hora" placeholder="Hora del aviso"><br/>
-                                        <label for="Descripcion">Estado Civil: </label><input name="Descripcion" placeholder="Texto para el recordatorio"><br/>
+                                        <label for="Hora">Hora: </label><input name="Hora" placeholder="Hora del aviso"><br/>
+                                        <label for="Descripcion">Descripcion: </label><input name="Descripcion" placeholder="Texto para el recordatorio"><br/>
+                                        <button type="submit" name="alarma">Añadir Alarma</button>
+                                    </form>
+                                </div>   
+                                <div id="EliminaAlarma">
+                                    <h2>Quitar Alarma...</h2>
+                                    <form action="" method="POST" width="200px" height="auto">
+                                        <label for="Nombre">Nombre: </label><input name="Nombre" placeholder="Nombre Local"><br/>
+                                        <label for="Fecha">Fecha: </label><input name="Fecha" placeholder="Fecha del aviso"><br/>
+                                        <button type="submit" name="borraAlarma">Añadir Alarma</button>
                                     </form>
                                 </div>     
-		                    </div>
+                                </div>
                   		</div>
                   	</div><!-- /.row -->
                 </div><!-- /.box-body -->

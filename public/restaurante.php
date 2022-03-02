@@ -146,7 +146,7 @@
                   echo "<i class='fa fa-angle-left pull-right'></i>";
                   echo "</a>";
                   echo "<ul class='treeview-menu'>";
-                    echo "<li><a href='socialcity.html' style='font-size:20px;font-family: 'Redressed', cursive;'><i class='fa fa-circle-o'> Socialcity/i></a></li>";
+                    echo "<li><a href='socialcity.html' style='font-size:20px;font-family: 'Redressed', cursive;'><i class='fa fa-circle-o'> Socialcity</i></a></li>";
                 echo "</ul>";
                 echo "</li>";
                 echo "<li class='treeview'>";
@@ -155,7 +155,7 @@
                   echo "<i class='fa fa-angle-left pull-right'></i>";
                   echo "</a>";
                   echo "<ul class='treeview-menu'>";
-                    echo "<li><a href='login.php' style='font-size:20px;font-family: 'Redressed', cursive;'><i class='fa fa-circle-o'> Login/i></a></li>";
+                    echo "<li><a href='login.php' style='font-size:20px;font-family: 'Redressed', cursive;'><i class='fa fa-circle-o'> Login</i></a></li>";
                 echo "</ul>";
                 echo "</li>";           
                 echo "<li class='treeview'>";

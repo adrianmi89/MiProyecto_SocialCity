@@ -141,7 +141,7 @@
                   echo "<i class='fa fa-angle-left pull-right'></i>";
                   echo "</a>";
                   echo "<ul class='treeview-menu'>";
-                    echo "<li><a href='perfil.php' style='font-size:20px;font-family: 'Redressed', cursive;'><i class='fa fa-circle-o'> $alias</i></a></li>";
+                    echo "<li><a href='perfil.php' style='font-size:20px;font-family: 'Redressed', cursive;'><i class='fa fa-circle-o'>".$alias."</i></a></li>";
                 echo "</ul>";
                 echo "</li>";           
               }
@@ -152,7 +152,7 @@
                   echo "<i class='fa fa-angle-left pull-right'></i>";
                   echo "</a>";
                   echo "<ul class='treeview-menu'>";
-                    echo "<li><a href='socialcity.html' style='font-size:20px;font-family: 'Redressed', cursive;'><i class='fa fa-circle-o'> Socialcity/i></a></li>";
+                    echo "<li><a href='socialcity.html' style='font-size:20px;font-family: 'Redressed', cursive;'><i class='fa fa-circle-o'> Socialcity</i></a></li>";
                 echo "</ul>";
                 echo "</li>";
                 echo "<li class='treeview'>";
@@ -161,7 +161,7 @@
                   echo "<i class='fa fa-angle-left pull-right'></i>";
                   echo "</a>";
                   echo "<ul class='treeview-menu'>";
-                    echo "<li><a href='login.php' style='font-size:20px;font-family: 'Redressed', cursive;'><i class='fa fa-circle-o'> Login/i></a></li>";
+                    echo "<li><a href='login.php' style='font-size:20px;font-family: 'Redressed', cursive;'><i class='fa fa-circle-o'> Login</i></a></li>";
                 echo "</ul>";
                 echo "</li>";           
                 echo "<li class='treeview'>";
@@ -170,7 +170,7 @@
                 echo "<i class='fa fa-angle-left pull-right'></i>";
                 echo "</a>";
                 echo "<ul class='treeview-menu'>";
-                  echo "<li><a href='registro.php' style='font-size:20px;font-family: 'Redressed', cursive;'><i class='fa fa-circle-o'> Nuevo Usuario/i></a></li>";
+                  echo "<li><a href='registro.php' style='font-size:20px;font-family: 'Redressed', cursive;'><i class='fa fa-circle-o'> Nuevo Usuario</i></a></li>";
                 echo "</ul>";
                 echo "</li>";    
                 }
@@ -303,14 +303,8 @@
                                 <?php 
                                 listaLocales($zona,$tipo,$capacidad);
                                 ?>
-                            
-               </div>     
-						</div>
-        </div>
-                           </div>
-                        </div>
-		                    
-                  		</div>
+                            </div>     
+                       </div>
                   	</div><!-- /.row -->
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
