@@ -50,16 +50,16 @@
       bajaUsuario($conexion,$alias);
     }
     if(isset($_POST['alarma'])){
-      $nombre = $_POST['Nombre'];
+      $nombreLocal = $_POST['NombreLocal'];
       $fecha = $_POST['Fecha'];
       $hora = $_POST['Hora'];
       $descripcion = $_POST['Descripcion'];
-      addAlarma($alias,$nombre,$fecha,$hora,$descripcion);
+      addAlarma($alias,$nombreLocal,$fecha,$hora,$descripcion);
       }
     if(isset($_POST['borraAlarma'])){
-      $nombre = $_POST['Nombre'];
+      $nombreLocal = $_POST['NombreLocal'];
       $fecha = $_POST['Fecha'];
-      borraAlarma($alias,$nombre,$fecha);
+      borraAlarma($alias,$nombreLocal,$fecha);
       }
 ?>
 <html>
@@ -220,20 +220,26 @@
                             ?>
                           
                             <div id="DatosPersona" style="padding-left:2%">
-                                <h2>Información básica</h2>
+                                <h2>Información básica</h2><hr/>
                                 <form action="" method="POST" width="200px" height="auto">
+                                  <div>
                                     <label for="Nombre">Nombre: </label><input name="Nombre" value="<?php echo $Nombre ?>"><br/>
                                     <label for="Sexo">Sexo: </label><input name="Sexo" value="<?php echo $Sexo ?>" placeholder="Tu Sexo"><br/>
+                                  </div>
+                                  <div style="position:relative;float:right;margin-top:-90px;margin-right:50%">
                                     <label for="Edad">Edad: </label><input name="Edad" value="<?php echo $Edad ?>"><br/>
                                     <label for="EstadoCivil">Estado Civil: </label><input name="EstadoCivil" value="<?php echo $EstadoCivil ?>"><br/>
+                                  </div>
+                                  <div style="position:relative;float:right;margin-top:-110px;margin-right:20%">
                                     <label for="RamaProfesional">Rama Profesional: </label><input name="RamaProfesional" value="<?php echo $RamaProfesional ?>"><br/>
                                     <label for="Intereses">Intereses: </label><input name="Intereses" value="<?php echo $Intereses ?>"><br/>
+                                  </div>
                                     <button type="submit">Editar</button>
                                 </form>
                             </div>
                             <div id="Favoritos" style="padding-left:2%">
                                 
-                                <h2>Mis Favoritos</h2>
+                                <h2>Mis Favoritos</h2><hr/>
                                 <div>
                                 <?php
                                   $listaFavoritos = "SELECT Nombre FROM favoritos WHERE Alias = '$alias'";
@@ -251,27 +257,47 @@
                                 </div>
                             </div>
                             <div id="Alarmas" style="padding-left:2%">
-                                <h2>Mis Alarmas</h2>
+                                <h2>Mis Alarmas</h2><hr/>
                                 <div>
-                                    <b>Leer alarma de la base de datos</b><button>Eliminar</button>
+                                  <?php
+                                  $verAlarmas = "SELECT * FROM alarma WHERE Alias = '$alias'";
+                                  $resulDatosAlarma = mysqli_query($conexion, $verAlarmas);
+
+                                  echo "<table style='font-size:20px;width:50%'>";
+                                  echo "<th style='color:black;font-weight:bold'>Nombre Local</th><th style='color:black;font-weight:bold'>Fecha</th><th style='color:black;font-weight:bold'>Hora</th><th style='color:black;font-weight:bold'>Descripción</th>";
+                                  echo "<br/><br/>";
+                                  while($alarma = mysqli_fetch_row($resulDatosAlarma)){
+                                    $nAlarma = $alarma[0]; 
+                                    $alias = $alarma[1];
+                                    $nombreLocal = $alarma[2]; 
+                                    $fecha = $alarma[3];
+                                    $hora = $alarma[4];
+                                    $descripcion = $alarma[5];
+
+                                    echo "<tr>";
+                                    echo "<td>".$nombreLocal."</td><td>".$fecha."</td><td>".$hora."</td><td>".$descripcion."</td>";
+                                    echo "</tr>";
+                                  }
+                                  echo "</table>";
+                                  ?>
                                 </div>
                             
-                                <div id="CreaAlarma">
+                                <div id="CreaAlarma" style="position:relative;float:left;margin-top:50px;margin-left:0%">
                                     <h2>Nueva Alarma...</h2>
                                     <form action="" method="POST" width="200px" height="auto">
-                                        <label for="Nombre">Nombre: </label><input name="Nombre" placeholder="Nombre Local"><br/>
+                                        <label for="NombreLocal">Nombre: </label><input name="NombreLocal" placeholder="Nombre Local"><br/>
                                         <label for="Fecha">Fecha: </label><input name="Fecha" placeholder="Fecha del aviso"><br/>
                                         <label for="Hora">Hora: </label><input name="Hora" placeholder="Hora del aviso"><br/>
                                         <label for="Descripcion">Descripcion: </label><input name="Descripcion" placeholder="Texto para el recordatorio"><br/>
-                                        <button type="submit" name="alarma">Añadir Alarma</button>
+                                        <button type="submit" name="alarma">Añadir</button>
                                     </form>
                                 </div>   
-                                <div id="EliminaAlarma">
+                                <div id="EliminaAlarma" style="position:relative;float:right;margin-top:50px;margin-right:60%">
                                     <h2>Quitar Alarma...</h2>
                                     <form action="" method="POST" width="200px" height="auto">
-                                        <label for="Nombre">Nombre: </label><input name="Nombre" placeholder="Nombre Local"><br/>
+                                        <label for="Nombre">Nombre: </label><input name="NombreLocal" placeholder="Nombre Local"><br/>
                                         <label for="Fecha">Fecha: </label><input name="Fecha" placeholder="Fecha del aviso"><br/>
-                                        <button type="submit" name="borraAlarma">Añadir Alarma</button>
+                                        <button type="submit" name="borraAlarma">Eliminar</button>
                                     </form>
                                 </div>     
                                 </div>
