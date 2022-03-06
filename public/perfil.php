@@ -9,6 +9,23 @@
     }
     
     $alias = $_SESSION["usuario"];
+    $jefeLocal = NULL;
+    $nombreLocal = NULL;
+
+    // Identificamos al jefe y cogemos el nombre del local para editar los datos de los locales
+    $jefeRes = "SELECT Nombre FROM restaurante WHERE Jefe = '$alias'";
+    $jefeBar = "SELECT Nombre FROM bar WHERE Jefe = '$alias'";
+
+    $resulResJefe = mysqli_query($conexion, $jefeRes);
+    $resulBarJefe = mysqli_query($conexion, $jefeBar);
+
+    while($restaurante = mysqli_fetch_row($resulResJefe)){
+      $nombreRes = $restaurante[0];
+    }
+    while($bar = mysqli_fetch_row($resulBarJefe)){
+      $nombreBar = $bar[0];
+    }
+
     if(isset($_POST['cerrarSesion'])){
       unset($_SESSION);
       session_destroy();
@@ -61,6 +78,24 @@
       $fecha = $_POST['Fecha'];
       borraAlarma($alias,$nombreLocal,$fecha);
       }
+  
+    // Datos del jefe del local
+    if(isset($_POST['datosOcupacion'])){
+      $lun = $_POST['Lunes'];
+      $mar = $_POST['Martes'];
+      $mie = $_POST['Miercoles'];
+      $jue = $_POST['Jueves'];
+      $vie = $_POST['Viernes'];
+      $sab = $_POST['Sabado'];
+      $dom = $_POST['Domingo'];
+     
+      ocupacion($lun,$mar,$mie,$jue,$vie,$sab,$dom,$nombreLocal);
+    }
+    if(isset($_POST['edadMedia'])){
+      $edadMedia = $_POST['edadDia'];
+    
+      edadMedia($edadMedia,$nombreLocal);
+    }    
 ?>
 <html>
   <head>
@@ -237,6 +272,28 @@
                                     <button type="submit">Editar</button>
                                 </form>
                             </div>
+                            <?php
+                              if($resuljefeLocal == true){
+                                echo "<div id='DatosJefeLocal' style='padding-left:2%;margin-top:50px'>";
+                                  echo "<h2>Ocupación Semanal del Local</h2><hr/>";
+                                      echo "<form action='' method='POST' width='100px' height='auto'>";
+                                          echo "<label for='Lunes'>Lunes: </label><input name='Lunes'><br/>";
+                                          echo "<label for='Martes'>Martes: </label><input name='Martes'><br/>";
+                                          echo "<label for='Miercoles'>Miércoles: </label><input name='Miercoles'><br/>";
+                                          echo "<label for='Jueves'>Jueves: </label><input name='Jueves'><br/>";
+                                          echo "<label for='Viernes'>Viernes: </label><input name='Viernes'><br/>";
+                                          echo "<label for='Sabado'>Sábado: </label><input name='Sabado'><br/>";
+                                          echo "<label for='Domingo'>Domingo: </label><input name='Domingo'><br/>";
+                                          echo "<button type='submit' name='datosOcupacion'>Actualizar</button>";
+                                        echo "</form>";
+                                  echo "<h2>Edad Media del ambiente de Local</h2><hr/>";
+                                    echo "<form action='' method='POST' whidth='100px' height='auto'>";
+                                        echo "<label for='edadMedia' style='font-weight:bold'>Edad media del día actual: </label><input name='edadDia'><br/>";
+                                        echo "<button type='submit' name='edadMedia'>Actualizar</button>";
+                                      echo "</form>";
+                                echo "</div>";
+                              }
+                            ?>
                             <div id="Favoritos" style="padding-left:2%">
                                 
                                 <h2>Mis Favoritos</h2><hr/>
@@ -252,7 +309,7 @@
                                     echo "<div style='padding:10px;'>";
                                     echo "<a style='color:black;font-weight:bold;font-size:18px' href = 'restaurante.php?nombre=$nombre'>".$nombre."</a>";
                                     echo "</div>";
-                                }
+                                  }
                                 ?>
                                 </div>
                             </div>

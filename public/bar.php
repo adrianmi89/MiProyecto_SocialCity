@@ -212,14 +212,36 @@
                       $DIRECCION_NombreLocal = $bar[7];
                       $Foto = $bar[8];
                     }
+                    $Calle = NULL;
+                    $Ciudad = NULL;
                     while($direccion = mysqli_fetch_row($resulDatosDireccion)){
                       $NombreLocal = $direccion[0]; 
                       $Zona = $direccion[1]; 
                       $Calle = $direccion[2];
                       $Ciudad = $direccion[3];
                     }
+
+                    // Sacamos la edad media del ambiente de cada local y la ocupación diaria
+                    $verEdadMedia = "SELECT Edad FROM clientes_habituales WHERE NombreLocal = '$localActual'";
+                    $verOcupacion = "SELECT Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,Domingo FROM historial_ocupacion WHERE NombreLocal = '$localActual'";
+                    $resulVerEdadMedia = mysqli_query($conexion, $verEdadMedia);
+                    $resulVerOcupacion = mysqli_query($conexion, $verOcupacion);
+
+                    while($clientes_habituales = mysqli_fetch_row($resulVerEdadMedia)){
+                      $edadMedia = $clientes_habituales[0]; 
+                      
+                    }
+                    while($historial_ocupacion = mysqli_fetch_row($resulVerOcupacion)){
+                      $lun = $historial_ocupacion[0]; 
+                      $mar = $historial_ocupacion[1];
+                      $mie = $historial_ocupacion[2];
+                      $jue = $historial_ocupacion[3];
+                      $vie = $historial_ocupacion[4];
+                      $sab = $historial_ocupacion[5];
+                      $dom = $historial_ocupacion[6];
+                    }
                     ?>
-                    <div style='padding-left:3%;margin-left:5%;margin-right:5%;border:5px solid black;border-radius:10%;width:90%;height:180px;background-color: #3c8dbc;color:white;font-size:36px'>
+                    <div style='padding-left:3%;margin-left:5%;margin-right:5%;border:5px solid black;width:90%;height:180px;background-color: #3c8dbc;color:white;font-size:36px'>
                       <h1 style="font-size:42px"><?php echo $Nombre ?></h1>
                       <form action= "" method= "POST">
                       <?php
@@ -323,16 +345,17 @@
                         <h3><b>Horario: </b><span style="font-weight:normal"><?php echo $Horario ?></span></h3>
                         <h3><b>Eventos: </b><span style="font-weight:normal"><?php echo $Eventos ?></span></h3>
                         <h3><b>Dirección: </b><span style="font-weight:normal"><?php echo $Calle." - ".$Ciudad ?></span></h3>
-                        <h3><b>Rango de edad del ambiente: </b><?php echo "Sin datos" ?>&nbsp;</h3>
-                        <h3>Ocupación estimada: 
-                            <table width="400px" height="auto">
-                                <tr>
-                                    <td>Lunes:</td><td width="20px"><?php echo "Sin datos" ?> %</td><td>Martes:</td><td><?php echo "Sin datos" ?> %</td>
-                                    <td>Miércoles:</td><td><?php echo "Sin datos" ?> %</td><td>Jueves:</td><td><?php echo "Sin datos" ?> %</td>
+                        <h3><b>Edad media del ambiente: </b><span style="font-weight:normal"><?php echo $edadMedia." años"?></span></h3>
+                        <h3>Ocupación estimada:</h3>
+                            <table width="700px" height="100px" style="font-size:24px" aling="center">
+                                <tr style="font-weight:bold;background-color:#3c8dbc;color:white">
+                                  <th>Lunes</th><th>Martes</th><th>Miércoles</th><th>Jueves</th><th>Viernes</th><th>Sábado</th><th>Domingo</th>
                                 </tr>
-                                <tr>
-                                    <td>Viernes:</td><td><?php echo "Sin datos" ?> %</td><td>Sábado:</td><td><?php echo "Sin datos" ?> %</td>
-                                    <td>Domingo:</b></td><td><?php echo "Sin datos" ?> %</td>
+                                <tr style="margin-top:10px;border:2px solid #3c8dbc;border-top:none">
+                                    <td style="padding-left:20px"><?php echo $lun ?> %</td><td style="padding-left:20px"><?php echo $mar ?> %</td>
+                                    <td style="padding-left:30px"><?php echo $mie ?> %</td><td style="padding-left:20px"><?php echo $jue ?> %</td>
+                                    <td style="padding-left:20px"><?php echo $vie ?> %</td><td style="padding-left:20px"><?php echo $sab ?> %</td>
+                                    <td style="padding-left:20px"><?php echo $dom ?> %</td>
                                 </tr>
                             </table>
 						            <h3>Juegos de mesa: <span style="font-weight:normal"><?php echo $JuegosDeMesa ?></span></h3>                 

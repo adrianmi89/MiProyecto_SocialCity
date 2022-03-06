@@ -121,12 +121,23 @@
         $alarmaLocal = "DELETE FROM alarma WHERE Alias = '$alias' AND Nombre = '$nombreLocal' AND Fecha = '$fecha'";
         $resulAlarmaLocal = mysqli_query($conexion, $alarmaLocal);
     }
+    function addComentario($alias,$descripcion){
+
+    }
     // Función para añadir un LIKE a un comentario específico
     function meGusta($id){
 
     }
     // Función para añadir la ocupación aproximada que el jefe de cada local va subir al final de la semana
-    function ocupacion($lun,$mar,$mie,$jue,$vie,$sab,$dom){
-        
+    function ocupacion($lun,$mar,$mie,$jue,$vie,$sab,$dom,$nombreLocal){
+        global $conexion;
+        $ocupacionLocal = "INSERT INTO historial_ocupacion(Lunes,Martes,Miercoles,Jueves,Viernes,Sabado,NombreLocal) VALUES($lun,$mar,$mie,$jue,$vie,$sab,$dom,'$nombreLocal')";
+        $resulOcupacionLocal = mysqli_query($conexion, $ocupacionLocal);
+    }
+    // Función para añadir la edad media del ambiente de un local y actualizarla día
+    function edadMedia($edadMedia,$nombreLocal){
+        global $conexion;
+        $ambienteLocal = "INSERT INTO clientes_habituales(Edad,NombreLocal) VALUES($edad,'$nombreLocal')";
+        $resulAmbienteLocal = mysqli_query($conexion, $ambienteLocal);
     }
 ?>
