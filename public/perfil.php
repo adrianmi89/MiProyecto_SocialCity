@@ -9,8 +9,8 @@
     }
     
     $alias = $_SESSION["usuario"];
-    $jefeLocal = NULL;
-    $nombreLocal = NULL;
+    $nombreLocal;
+    $eventos;
 
     // Identificamos al jefe y cogemos el nombre del local para editar los datos de los locales
     $jefeRes = "SELECT Nombre FROM restaurante WHERE Jefe = '$alias'";
@@ -20,10 +20,10 @@
     $resulBarJefe = mysqli_query($conexion, $jefeBar);
 
     while($restaurante = mysqli_fetch_row($resulResJefe)){
-      $nombreRes = $restaurante[0];
+      $nombreLocal = $restaurante[0];
     }
     while($bar = mysqli_fetch_row($resulBarJefe)){
-      $nombreBar = $bar[0];
+      $nombreLocal = $bar[0];
     }
 
     if(isset($_POST['cerrarSesion'])){
@@ -81,13 +81,13 @@
   
     // Datos del jefe del local
     if(isset($_POST['datosOcupacion'])){
-      $lun = $_POST['Lunes'];
-      $mar = $_POST['Martes'];
-      $mie = $_POST['Miercoles'];
-      $jue = $_POST['Jueves'];
-      $vie = $_POST['Viernes'];
-      $sab = $_POST['Sabado'];
-      $dom = $_POST['Domingo'];
+      $lun = intval($_POST['Lunes']);
+      $mar = intval($_POST['Martes']);
+      $mie = intval($_POST['Miercoles']);
+      $jue = intval($_POST['Jueves']);
+      $vie = intval($_POST['Viernes']);
+      $sab = intval($_POST['Sabado']);
+      $dom = intval($_POST['Domingo']);
      
       ocupacion($lun,$mar,$mie,$jue,$vie,$sab,$dom,$nombreLocal);
     }
@@ -96,6 +96,11 @@
     
       edadMedia($edadMedia,$nombreLocal);
     }    
+    if(isset($_POST['evento'])){
+      $eventos = $_POST['eventos'];
+    
+      addEvento($eventos,$nombreLocal);
+    }
 ?>
 <html>
   <head>
@@ -273,7 +278,8 @@
                                 </form>
                             </div>
                             <?php
-                              if($resuljefeLocal == true){
+                            
+                              if(!empty($nombreLocal)){
                                 echo "<div id='DatosJefeLocal' style='padding-left:2%;margin-top:50px'>";
                                   echo "<h2>Ocupación Semanal del Local</h2><hr/>";
                                       echo "<form action='' method='POST' width='100px' height='auto'>";
@@ -291,6 +297,17 @@
                                         echo "<label for='edadMedia' style='font-weight:bold'>Edad media del día actual: </label><input name='edadDia'><br/>";
                                         echo "<button type='submit' name='edadMedia'>Actualizar</button>";
                                       echo "</form>";
+                                
+                                // Comprobamos que el tipo de local para añadir eventos. Los restaurantes no tendrán esa opción
+                                $tipo = substr($nombreLocal,0,3);
+                                if($tipo == "Caf"){
+
+                                  echo "<h2>Eventos</h2><hr/>";
+                                    echo "<form action='' method='POST' whidth='300px' height='auto'>";
+                                        echo "<label for='eventos' style='font-weight:bold'>Próximos Eventos: </label><textarea name='eventos' placeholder='Ejem: - Fiesta de la cerveza Mahou. 3 de Junio a partir de las 20:00 todas tus Mahous a mitad de precio' width='200px' height='100px'></textarea><br/>";
+                                        echo "<button type='submit' name='evento'>Actualizar</button>";
+                                      echo "</form>";
+                                }
                                 echo "</div>";
                               }
                             ?>
@@ -319,7 +336,7 @@
                                   <?php
                                   $verAlarmas = "SELECT * FROM alarma WHERE Alias = '$alias'";
                                   $resulDatosAlarma = mysqli_query($conexion, $verAlarmas);
-
+                                  echo $esBar;
                                   echo "<table style='font-size:20px;width:50%'>";
                                   echo "<th style='color:black;font-weight:bold'>Nombre Local</th><th style='color:black;font-weight:bold'>Fecha</th><th style='color:black;font-weight:bold'>Hora</th><th style='color:black;font-weight:bold'>Descripción</th>";
                                   echo "<br/><br/>";
@@ -382,3 +399,4 @@
     <script src="js/bootstrap.min.js"></script>
     <!-- AdminLTE App -->
     <script src="js/app.min.js"></script>
+

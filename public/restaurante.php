@@ -228,10 +228,12 @@
                     $resulVerEdadMedia = mysqli_query($conexion, $verEdadMedia);
                     $resulVerOcupacion = mysqli_query($conexion, $verOcupacion);
 
+                    $edadMedia = NULL;
                     while($clientes_habituales = mysqli_fetch_row($resulVerEdadMedia)){
                       $edadMedia = $clientes_habituales[0]; 
                       
                     }
+                    $lun = $mar = $mie = $jue = $vie = $sab = $dom = NULL;
                     while($historial_ocupacion = mysqli_fetch_row($resulVerOcupacion)){
                       $lun = $historial_ocupacion[0]; 
                       $mar = $historial_ocupacion[1];
@@ -335,7 +337,7 @@
                         <h3><b>Dirección: </b><span style="font-weight:normal"><?php echo $Calle." - ".$Ciudad ?></span></h3>
                         <h3><b>Edad media del ambiente: </b><span style="font-weight:normal"><?php echo $edadMedia." años" ?>&nbsp;</h3>
                         <h3>Ocupación estimada:</h3>
-                            <<table width="700px" height="100px" style="font-size:24px" aling="center">
+                            <table width="700px" height="100px" style="font-size:24px" aling="center">
                                 <tr style="font-weight:bold;background-color:#3c8dbc;color:white">
                                   <th>Lunes</th><th>Martes</th><th>Miércoles</th><th>Jueves</th><th>Viernes</th><th>Sábado</th><th>Domingo</th>
                                 </tr>

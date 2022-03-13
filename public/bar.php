@@ -227,10 +227,12 @@
                     $resulVerEdadMedia = mysqli_query($conexion, $verEdadMedia);
                     $resulVerOcupacion = mysqli_query($conexion, $verOcupacion);
 
+                    $edadMedia = NULL;
                     while($clientes_habituales = mysqli_fetch_row($resulVerEdadMedia)){
                       $edadMedia = $clientes_habituales[0]; 
                       
                     }
+                    $lun = $mar = $mie = $jue = $vie = $sab = $dom = NULL;
                     while($historial_ocupacion = mysqli_fetch_row($resulVerOcupacion)){
                       $lun = $historial_ocupacion[0]; 
                       $mar = $historial_ocupacion[1];
