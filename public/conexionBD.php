@@ -11,7 +11,7 @@
  
     // Variables Registro y Login
    
-    function listaLocales($zona,$tipo,$capacidad){
+    function listaLocales($zona,$tipo,$capacidad,$rangoEdad){
         global $conexion;
         $listarRestaurante = "SELECT Nombre,Puntuacion,Foto FROM restaurante";
         $listarBar = "SELECT Nombre,Puntuacion,Foto FROM bar";
@@ -24,9 +24,36 @@
             $listarBar = "SELECT Nombre,Puntuacion,Foto FROM bar INNER JOIN direccion
             ON DIRECCION_NombreLocal = NombreLocal WHERE zona = '$zona'";
         }
+
         // Filtrar por tipo de restaurante
         if(!empty($tipo)){
             $listarRestaurante = "SELECT Nombre,Puntuacion,Foto FROM restaurante WHERE Nombre LIKE '%$tipo%'";
+        }
+        if(!empty($rangoEdad)){
+            if($rangoEdad == "15-29"){
+                $num = 15;
+                $num2 = 29;
+                $listarRestaurante = "SELECT Nombre,Puntuacion,Foto FROM restaurante WHERE Nombre = (SELECT NombreLocal FROM clientes_habituales WHERE Edad >= $num and Edad < $num2)";
+                $listarBar = "SELECT Nombre,Puntuacion,Foto FROM bar WHERE Nombre = (SELECT NombreLocal FROM clientes_habituales WHERE Edad >= $num and Edad < $num2)";
+            }
+            else if($rangoEdad == "30-49"){
+                $num = 30;
+                $num2 = 49;
+                $listarRestaurante = "SELECT Nombre,Puntuacion,Foto FROM restaurante WHERE Nombre = (SELECT NombreLocal FROM clientes_habituales WHERE Edad >= $num and Edad < $num2)";
+                $listarBar = "SELECT Nombre,Puntuacion,Foto FROM bar WHERE Nombre = (SELECT NombreLocal FROM clientes_habituales WHERE Edad >= $num and Edad < $num2)";
+            }
+            else if($rangoEdad == "49-64"){
+                $num = 49;
+                $num2 = 64;
+                $listarRestaurante = "SELECT Nombre,Puntuacion,Foto FROM restaurante WHERE Nombre = (SELECT NombreLocal FROM clientes_habituales WHERE Edad >= $num and Edad < $num2)";
+                $listarBar = "SELECT Nombre,Puntuacion,Foto FROM bar WHERE Nombre = (SELECT NombreLocal FROM clientes_habituales WHERE Edad >= $num and Edad < $num2)";
+            }
+            else if($rangoEdad == "65-99"){
+                $num = 65;
+                $num2 = 99;
+                $listarRestaurante = "SELECT Nombre,Puntuacion,Foto FROM restaurante WHERE Nombre = (SELECT NombreLocal FROM clientes_habituales WHERE Edad >= $num and Edad < $num2)";
+                $listarBar = "SELECT Nombre,Puntuacion,Foto FROM bar WHERE Nombre = (SELECT NombreLocal FROM clientes_habituales WHERE Edad >= $num and Edad < $num2)";
+            }
         }
         // Filtrar por tamaño del bar
         if(!empty($capacidad)){
@@ -121,8 +148,15 @@
         $alarmaLocal = "DELETE FROM alarma WHERE Alias = '$alias' AND Nombre = '$nombreLocal' AND Fecha = '$fecha'";
         $resulAlarmaLocal = mysqli_query($conexion, $alarmaLocal);
     }
-    function addComentario($alias,$descripcion){
-
+    function addComentarioRes($comentario,$nombre,$alias){
+        global $conexion;
+        $comentario = "INSERT INTO comentario(Descripcion,RESTAURANTE_Nombre,Perfil_Alias) VALUES('$comentario','$nombre','$alias')";
+        $resulComentario = mysqli_query($conexion, $comentario);
+    }
+    function addComentarioBar($comentario,$nombre,$alias){
+        global $conexion;
+        $comentario = "INSERT INTO comentario(Descripcion,BAR_Nombre,Perfil_Alias) VALUES('$comentario','$nombre','$alias')";
+        $resulComentario = mysqli_query($conexion, $comentario);
     }
     // Función para añadir un LIKE a un comentario específico
     function meGusta($id){

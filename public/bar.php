@@ -25,6 +25,11 @@
       borraFavorito($alias,$nombre);
       $favorito = false;
     }
+    if(isset($_POST['comenta'])){
+      $comentario = $_POST['comentario'];
+      $nombre = $_GET['nombre'];
+      addComentarioRes($comentario,$nombre,$alias);
+    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -252,11 +257,11 @@
                           $localFavorito = "SELECT Alias,Nombre FROM favoritos WHERE Alias = '$alias' AND Nombre = '$Nombre'";
                           $buscaFavorito = mysqli_query($conexion, $localFavorito);
                           if($favoritos = mysqli_num_rows($buscaFavorito)){
-                            echo "<button style='position:relative;float:right;margin-top:10px;margin-right:3%;background-color:red !important;color:white !important;width:auto;font-weight:bold;font-size:18px' type='submit' name='borraFavorito'>Eliminar de Favoritos</button>";
+                            echo "<button style='position:relative;float:right;margin-top:10px;margin-right:3%;background-color:red !important;color:white !important;width:auto;font-weight:bold;font-size:18px' type='submit' name='borraFavorito'>Eliminar</button>";
                             $favorito = true;
                           }
                           else{
-                            echo "<button style='position:relative;float:right;margin-top:10px;margin-right:3%;background-color:white;color:black;width:auto;font-weight:bold;font-size:18px' type='submit' name='favorito'>Añadir a Favoritos</button>";
+                            echo "<button style='position:relative;float:right;margin-top:10px;margin-right:3%;background-color:white;color:black;width:auto;font-weight:bold;font-size:18px' type='submit' name='favorito'>Me Gusta</button>";
                             $favorito = false;
                           }
                         ?>
@@ -342,12 +347,12 @@
                     <img src='<?php echo $Foto ?>' width="800px" height="400px"/></a>
                   </div>
                     <div style="margin-top:50px;margin-left:2%;width:30%;height:auto;">
-                        <h3><b>Valoración:</b><span style="font-weight:normal"><?php echo $Puntuacion." estrellas" ?></span></h3>
-                        <h3><b>Capacidad: </b><span style="font-weight:normal"><?php echo $Capacidad." personas"?></span></h3>
-                        <h3><b>Horario: </b><span style="font-weight:normal"><?php echo $Horario ?></span></h3>
-                        <h3><b>Eventos: </b><span style="font-weight:normal"><?php echo $Eventos ?></span></h3>
-                        <h3><b>Dirección: </b><span style="font-weight:normal"><?php echo $Calle." - ".$Ciudad ?></span></h3>
-                        <h3><b>Edad media del ambiente: </b><span style="font-weight:normal"><?php echo $edadMedia." años"?></span></h3>
+                        <h3><b>Valoración:</b><span style="font-weight:normal"><br/><?php echo $Puntuacion." estrellas" ?></span></h3>
+                        <h3><b>Capacidad: </b><span style="font-weight:normal"><br/><?php echo $Capacidad." personas"?></span></h3>
+                        <h3><b>Horario: </b><span style="font-weight:normal"><br/><?php echo $Horario ?></span></h3>
+                        <h3><b>Eventos: </b><span style="font-weight:normal"><br/><?php echo $Eventos ?></span></h3>
+                        <h3><b>Dirección: </b><span style="font-weight:normal"><br/><?php echo $Calle." - ".$Ciudad ?></span></h3>
+                        <h3><b>Edad media del ambiente: </b><span style="font-weight:normal"><br/><?php echo $edadMedia." años"?></span></h3><br/>
                         <h3>Ocupación estimada:</h3>
                             <table width="700px" height="100px" style="font-size:24px" aling="center">
                                 <tr style="font-weight:bold;background-color:#3c8dbc;color:white">
@@ -360,7 +365,38 @@
                                     <td style="padding-left:20px"><?php echo $dom ?> %</td>
                                 </tr>
                             </table>
-						            <h3>Juegos de mesa: <span style="font-weight:normal"><?php echo $JuegosDeMesa ?></span></h3>                 
+						            <h3>Juegos de mesa: <span style="font-weight:normal"><?php echo $JuegosDeMesa ?></span></h3>     
+                        <br/><br/>
+            <div id="Comentarios" style="padding-left:2%">
+                                <h2>Comentarios</h2><hr/>
+                                <div>
+                                  <?php
+                                  $verComentario = "SELECT Descripcion,PERFIL_Alias FROM comentario WHERE RESTAURANTE_Nombre = '$Nombre'";
+                                  $resulComentario = mysqli_query($conexion, $verComentario);
+                        
+                                  echo "<table width='50%' height='auto'>";
+                                  while($comentario = mysqli_fetch_row($resulComentario)){
+                                    $descripcion = $comentario[0]; 
+                                    $autor = $comentario[1];
+            
+                                    echo "<tr>";
+                                    echo "<b><td>".$autor."</td></b>";
+                                    echo "</tr>";
+                                    echo "<tr>";
+                                    echo "<td>".$descripcion."</td>";
+                                    echo "</tr>";
+                                  }
+                                  echo "</table>";
+                                  ?>
+                                </div>
+                            
+                                <div id="CreaComentario" style="position:relative;float:left;margin-top:50px;margin-left:0%">
+                                    <form action="" method="POST" width="200px" height="auto">
+                                    <textarea name='comentario' placeholder='Deja un comentario' width='200px' height='100px'></textarea><br/>
+                                        <button type="submit" name="comenta">Enviar</button>
+                                    </form>
+                                </div>   
+                                </div>                            
                     </div>
         </div>
                            </div>

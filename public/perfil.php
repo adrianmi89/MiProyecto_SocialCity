@@ -224,7 +224,7 @@
           
           <div class="row" style="margin-left:0px !important">
             <div class="col-md-12">
-              <div class="box">
+              <div class="box" style="margin-left:2%;margin-right:2%">
                 <!-- /.box-header -->
                 <div class="box-body">
                   	<div class="row">
@@ -261,18 +261,18 @@
                           
                             <div id="DatosPersona" style="padding-left:2%">
                                 <h2>Información básica</h2><hr/>
-                                <form action="" method="POST" width="200px" height="auto">
+                                <form action="" method="POST" width="400px" height="auto">
                                   <div>
                                     <label for="Nombre">Nombre: </label><input name="Nombre" value="<?php echo $Nombre ?>"><br/>
-                                    <label for="Sexo">Sexo: </label><input name="Sexo" value="<?php echo $Sexo ?>" placeholder="Tu Sexo"><br/>
+                                    <label for="Sexo">Sexo: </label><input style="margin-left:2.5%" name="Sexo" value="<?php echo $Sexo ?>" placeholder="Tu Sexo"><br/>
                                   </div>
                                   <div style="position:relative;float:right;margin-top:-90px;margin-right:50%">
-                                    <label for="Edad">Edad: </label><input name="Edad" value="<?php echo $Edad ?>"><br/>
+                                    <label for="Edad">Edad: </label><input style="margin-left:15%" name="Edad" value="<?php echo $Edad ?>"><br/>
                                     <label for="EstadoCivil">Estado Civil: </label><input name="EstadoCivil" value="<?php echo $EstadoCivil ?>"><br/>
                                   </div>
                                   <div style="position:relative;float:right;margin-top:-110px;margin-right:20%">
                                     <label for="RamaProfesional">Rama Profesional: </label><input name="RamaProfesional" value="<?php echo $RamaProfesional ?>"><br/>
-                                    <label for="Intereses">Intereses: </label><input name="Intereses" value="<?php echo $Intereses ?>"><br/>
+                                    <label for="Intereses">Intereses: </label><input style="margin-left:10%" name="Intereses" value="<?php echo $Intereses ?>"><br/>
                                   </div>
                                     <button type="submit">Editar</button>
                                 </form>
@@ -324,7 +324,13 @@
                                     $nombre = $favoritos[0];
                                 
                                     echo "<div style='padding:10px;'>";
-                                    echo "<a style='color:black;font-weight:bold;font-size:18px' href = 'restaurante.php?nombre=$nombre'>".$nombre."</a>";
+                                    
+                                    if(substr($nombre,0,3) == "Caf"){
+                                      echo "<a style='color:black;font-weight:bold;font-size:18px' href = 'bar.php?nombre=$nombre'>".$nombre."</a>";
+                                    }
+                                    else
+                                      echo "<a style='color:black;font-weight:bold;font-size:18px' href = 'restaurante.php?nombre=$nombre'>".$nombre."</a>";
+                                    
                                     echo "</div>";
                                   }
                                 ?>
@@ -336,7 +342,7 @@
                                   <?php
                                   $verAlarmas = "SELECT * FROM alarma WHERE Alias = '$alias'";
                                   $resulDatosAlarma = mysqli_query($conexion, $verAlarmas);
-                                  echo $esBar;
+                        
                                   echo "<table style='font-size:20px;width:50%'>";
                                   echo "<th style='color:black;font-weight:bold'>Nombre Local</th><th style='color:black;font-weight:bold'>Fecha</th><th style='color:black;font-weight:bold'>Hora</th><th style='color:black;font-weight:bold'>Descripción</th>";
                                   echo "<br/><br/>";
@@ -366,7 +372,7 @@
                                         <button type="submit" name="alarma">Añadir</button>
                                     </form>
                                 </div>   
-                                <div id="EliminaAlarma" style="position:relative;float:right;margin-top:50px;margin-right:60%">
+                                <div id="EliminaAlarma" style="position:relative;float:right;margin-top:50px;margin-right:40%">
                                     <h2>Quitar Alarma...</h2>
                                     <form action="" method="POST" width="200px" height="auto">
                                         <label for="Nombre">Nombre: </label><input name="NombreLocal" placeholder="Nombre Local"><br/>
